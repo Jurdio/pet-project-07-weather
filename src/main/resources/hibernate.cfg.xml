@@ -3,9 +3,9 @@
     <session-factory>
         <!-- JDBC Database connection settings -->
         <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mariadb://your_database_url:3306/your_database_name</property>
-        <property name="hibernate.connection.username">your_username</property>
-        <property name="hibernate.connection.password">your_password</property>
+        <property name="hibernate.connection.url">jdbc:mariadb://localhost:3306/weather</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">maria</property>
 
         <!-- JDBC connection pool settings -->
         <property name="hibernate.c3p0.min_size">5</property>
