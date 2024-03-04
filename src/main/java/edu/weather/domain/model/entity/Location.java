@@ -1,4 +1,4 @@
-package edu.weather.model;
+package edu.weather.domain.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +17,6 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "locationName")
     private String name;
     private int userId;
     private BigDecimal latitude;

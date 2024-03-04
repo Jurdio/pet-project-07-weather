@@ -1,17 +1,17 @@
-package edu.weather.model;
+package edu.weather.domain.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Entity
+@Table
 public class User {
 
     @Id
@@ -21,6 +21,5 @@ public class User {
     @Column(unique = true)
     private String login;
 
-    @Column(name = "userPassword")
-    public String password;
+    private String password;
 }
