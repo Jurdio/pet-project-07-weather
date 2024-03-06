@@ -2,20 +2,17 @@ package edu.weather.domain.repository;
 
 import edu.weather.domain.model.entity.User;
 import edu.weather.util.HibernateUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hibernate.cfg.AvailableSettings.URL;
 
 
+@Slf4j
 public class UserRepository implements CrudRepository<User, Integer> {
-    private final String URL = "jdbc:mariadb://localhost:3306";
-    private final String USERNAME = "root";
-    private final String PASSWORD = "maria";
 
     @Override
     public Optional<User> findById(Integer id) {
@@ -37,20 +34,17 @@ public class UserRepository implements CrudRepository<User, Integer> {
     public User save(User entity) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // почати транзакцію
             transaction = session.beginTransaction();
-
-            // зберегти користувача
             session.save(entity);
-
-            // закінчити транзакцію
             transaction.commit();
-
-            return entity;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e){
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            log.error("Error while opening Hibernate session for saving user", e);
+            throw e;
         }
-        return null;
+        return entity;
     }
 
 
