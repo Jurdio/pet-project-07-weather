@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <title>Форма авторизації</title>
+    <title>Форма реєстрації</title>
 </head>
 <body>
 
@@ -13,19 +13,24 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="text-center">Авторизація</h4>
+                    <h4 class="text-center">Реєстрація</h4>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form method="post">
                         <div class="form-group">
                             <label for="username">Ім'я користувача:</label>
-                            <input type="text" class="form-control" id="username" name="username" th:value="${user.login}" required>
+                            <input type="text" class="form-control" id="username" name="username" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Пароль:</label>
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Увійти</button>
+                        <div class="form-group">
+                            <label for="confirmPassword">Підтвердіть пароль:</label>
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Зареєструватися</button>
                     </form>
                 </div>
             </div>
