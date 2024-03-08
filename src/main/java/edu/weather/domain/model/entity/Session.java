@@ -2,12 +2,12 @@ package edu.weather.domain.model.entity;
 
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ import java.util.UUID;
 public class Session {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private int userId;
     private LocalDateTime expiredAt;
