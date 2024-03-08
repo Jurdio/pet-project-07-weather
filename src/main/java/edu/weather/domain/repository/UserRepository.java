@@ -1,15 +1,17 @@
 package edu.weather.domain.repository;
 
+
+
 import edu.weather.domain.model.entity.User;
 import edu.weather.util.HibernateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 
 import java.util.List;
 import java.util.Optional;
-
-
 
 @Slf4j
 public class UserRepository implements CrudRepository<User, Integer> {
@@ -25,6 +27,19 @@ public class UserRepository implements CrudRepository<User, Integer> {
         return Optional.empty();
     }
 
+    public User findByLogin(String login) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM User WHERE login = :login";
+            Query<User> query = session.createQuery(hql, User.class);
+            query.setParameter("login", login);
+
+            return query.uniqueResult();
+        } catch (Exception e) {
+            log.error("Error while finding user by login", e);
+            throw e;
+        }
+    }
+
     @Override
     public List<User> findAll() {
         return null;
@@ -32,21 +47,11 @@ public class UserRepository implements CrudRepository<User, Integer> {
 
     @Override
     public User save(User entity) {
-        Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
             session.save(entity);
-            transaction.commit();
-        } catch (Exception e){
-            if (transaction != null && transaction.isActive()) {
-                transaction.rollback();
-            }
-            log.error("Error while opening Hibernate session for saving user", e);
-            throw e;
         }
         return entity;
     }
-
 
     @Override
     public void update(User entity) {

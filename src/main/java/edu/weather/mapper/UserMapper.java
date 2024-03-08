@@ -12,7 +12,8 @@ public interface UserMapper {
 
     UserDTO toUserDTO(User user);
 
-    @Mapping(source = "password", target = "password", qualifiedByName = "hashPassword")
+
+//    @Mapping(source = "password", target = "password", qualifiedByName = "hashPassword")
     User toUser(UserDTO userDTO);
 
     @Named("hashPassword")
