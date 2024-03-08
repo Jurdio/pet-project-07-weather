@@ -28,6 +28,7 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hibernate.hbm2ddl.auto">update</property>
 
+
         <mapping class="edu.weather.domain.model.entity.User"/>
         <mapping class="edu.weather.domain.model.entity.Location"/>
         <mapping class="edu.weather.domain.model.entity.Session"/>
