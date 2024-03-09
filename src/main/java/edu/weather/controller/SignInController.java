@@ -1,11 +1,15 @@
 package edu.weather.controller;
 
+import edu.weather.domain.model.dto.UserDTO;
+import edu.weather.domain.model.entity.Session;
+import edu.weather.domain.service.AuthorizationService;
 import edu.weather.domain.service.SessionService;
 import edu.weather.domain.service.UserService;
 import edu.weather.util.ThymeleafUtil;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -18,25 +22,40 @@ import java.io.IOException;
 @Slf4j
 @WebServlet(value = "/sign-in")
 public class SignInController extends BaseController {
-    private final UserService userService = new UserService();
-    private final SessionService sessionService = new SessionService();
+    private final AuthorizationService authorizationService = new AuthorizationService();
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        log.info("Start GET method -> /sign-in");
+
+        log.info("Processing sign-up page");
+        templateEngine.process("signIn", webContext, resp.getWriter());
+
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        UserDTO userDTO = UserDTO.builder()
+                .login(username)
+                .password(password)
+                .build();
 
-        // Ваш код для обробки POST-запиту
+        Session session = authorizationService.getAuthorizationByLoginAndThenReturnSession(userDTO);
+        log.info("User {} is registered", userDTO.getLogin());
+        log.info("Session id is {}", session.getId());
+
+        Cookie cookie = new Cookie("sessionId",session.getId().toString());
+        Cookie cookie1 = new Cookie("username", userDTO.getLogin());
+        System.out.println(cookie);
+        System.out.println(cookie1);
+
+        resp.addCookie(cookie);
+        resp.addCookie(cookie1);
+        resp.sendRedirect(req.getContextPath() + "/home");
+
+
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        log.info("Start GET method -> /sign-in");
 
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("templates/signIn.html");
-        requestDispatcher.forward(req, resp);
-
-
-        log.info("Finish GET method -> /sign-in");
-    }
 }

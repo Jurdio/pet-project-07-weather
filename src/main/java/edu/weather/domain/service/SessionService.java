@@ -4,6 +4,8 @@ import edu.weather.domain.model.entity.Session;
 import edu.weather.domain.repository.SessionRepository;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.UUID;
 
 public class SessionService {
     private final SessionRepository sessionRepository = new SessionRepository();
@@ -13,6 +15,12 @@ public class SessionService {
                 .userId(userId)
                 .expiredAt(LocalDateTime.now().plusHours(1))
                 .build());
+    }
+    public Session getSessionById(UUID sessionId) {
+        return sessionRepository.findById(sessionId).orElseThrow();
+    }
+    public void deleteSessionById(UUID sessionId){
+        sessionRepository.delete(sessionId);
     }
 
 

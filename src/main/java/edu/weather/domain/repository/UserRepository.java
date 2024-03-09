@@ -20,7 +20,7 @@ public class UserRepository implements CrudRepository<User, Integer> {
     public Optional<User> findById(Integer id) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             User user = session.get(User.class, id);
-            return Optional.ofNullable(user);
+            return Optional.of(user);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,8 +47,16 @@ public class UserRepository implements CrudRepository<User, Integer> {
 
     @Override
     public User save(User entity) {
+        Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.save(entity);
+            transaction = session.beginTransaction();
+            session.persist(entity);
+            transaction.commit();
+        } catch (Exception e){
+            if (transaction != null && transaction.isActive()){
+                transaction.rollback();
+            }
+            log.error("Errror", e);
         }
         return entity;
     }

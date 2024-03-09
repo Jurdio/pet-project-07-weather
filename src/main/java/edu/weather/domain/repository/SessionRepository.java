@@ -27,6 +27,7 @@ public class SessionRepository implements CrudRepository<Session, UUID> {
     }
 
 
+
     @Override
     public List<Session> findAll() {
         return null;
@@ -34,10 +35,15 @@ public class SessionRepository implements CrudRepository<Session, UUID> {
 
     @Override
     public Session save(Session entity) {
-        try (org.hibernate.Session session = HibernateUtil.getSessionFactory().openSession()) {
-            session.save(entity);
+        try (org.hibernate.Session openSession = HibernateUtil.getSessionFactory().openSession()) {
+            Transaction transaction = openSession.beginTransaction();
+            openSession.persist(entity);
+            transaction.commit();
+            return entity;
+        } catch (Exception e) {
+            log.error("Error while saving session", e);
+            throw e;
         }
-        return entity;
     }
 
     @Override
