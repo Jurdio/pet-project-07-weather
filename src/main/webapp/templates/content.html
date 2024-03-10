@@ -18,20 +18,30 @@
             flex: 0 0 auto;
             width: 150px; /* Adjust as needed */
             border-radius: 10px;
+            margin-top: 20px;
             margin-right: 0; /* Remove the right margin */
+            margin-bottom: -5px;
             overflow: hidden;
-            transition: background-color 0.3s; /* Add transition for background */
+            transition: background-color 0.3s, height 0.3s; /* Add transition for background and height */
             background-color: #f0f0f0; /* Set the initial background color */
             cursor: pointer; /* Add cursor pointer for clickable effect */
         }
 
         .day-card.active {
+            margin-top: 10px;
             background-color: #ffffff; /* Change background color when active */
+            border-bottom: 1px solid transparent; /* Remove border at the bottom */
+            border-radius: 10px 10px 0 0; /* Top-left and top-right corners rounded, bottom-left and bottom-right square */
+        }
+
+        .day-card .card-body {
+            height: 100%; /* Ensure the card body takes full height */
         }
 
         .day-details-container {
+            border-radius: 10px;
+            border: 2px solid #dee2e6; /* Added border styling */
             padding: 20px;
-            border-top: 1px solid #dee2e6;
             overflow: hidden;
             display: none;
             width: 100%; /* Occupy full width */
