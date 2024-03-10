@@ -17,10 +17,10 @@
         .day-card {
             flex: 0 0 auto;
             width: 150px; /* Adjust as needed */
+            border: 2px solid #dee2e6; /* Added border styling */
             border-radius: 10px;
             margin-top: 20px;
             margin-right: 0; /* Remove the right margin */
-            margin-bottom: -5px;
             overflow: hidden;
             transition: background-color 0.3s, height 0.3s; /* Add transition for background and height */
             background-color: #f0f0f0; /* Set the initial background color */
@@ -43,6 +43,7 @@
             border: 2px solid #dee2e6; /* Added border styling */
             padding: 20px;
             overflow: hidden;
+            margin-top: -10px;
             display: none;
             width: 100%; /* Occupy full width */
             transition: max-height 0.3s ease-in-out; /* Add transition for max-height */
@@ -87,12 +88,12 @@
     </div>
 
     <!-- Day details container -->
-    <div class="day-details-container">
+    <div class="day-details-container row">
         <!-- Add detailed weather information here -->
         <p>Day 1 Hourly Forecast, Temperature, etc.</p>
     </div>
 
-    <div class="day-details-container">
+    <div class="day-details-container row">
         <!-- Add detailed weather information here -->
         <p>Day 2 Hourly Forecast, Temperature, etc.</p>
     </div>
