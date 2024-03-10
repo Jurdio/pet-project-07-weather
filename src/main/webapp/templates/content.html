@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <!-- Bootstrap CSS link (you may need to adjust the version) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- Your custom styles go here -->
+    <style>
+        body {
+            overflow-x: hidden; /* Disable horizontal scroll on the entire page */
+        }
+
+        .day-card {
+            flex: 0 0 auto;
+            width: 150px; /* Adjust as needed */
+            border-radius: 10px;
+            margin-right: 0; /* Remove the right margin */
+            overflow: hidden;
+            transition: background-color 0.3s; /* Add transition for background */
+            background-color: #f0f0f0; /* Set the initial background color */
+            cursor: pointer; /* Add cursor pointer for clickable effect */
+        }
+
+        .day-card.active {
+            background-color: #ffffff; /* Change background color when active */
+        }
+
+        .day-details-container {
+            padding: 20px;
+            border-top: 1px solid #dee2e6;
+            overflow: hidden;
+            display: none;
+            width: 100%; /* Occupy full width */
+            transition: max-height 0.3s ease-in-out; /* Add transition for max-height */
+            max-height: 0; /* Set initial max-height to 0 */
+            box-sizing: border-box; /* Include padding in max-height */
+        }
+
+        .day-card.active + .day-details-container {
+            display: block;
+            max-height: 1000px; /* Set max-height to a large value for animation */
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container mt-5">
+    <!-- All days in one horizontal container -->
+    <div class="day-container row">
+        <!-- Day 1 (always expanded) -->
+        <div id="day1" class="day-card card col-md-4 active" tabindex="0" data-day="1">
+            <div class="card-body">
+                <h5 class="card-title">Day 1</h5>
+                <!-- Add your basic day information here -->
+                <p class="card-text">Date: March 10</p>
+                <p class="card-text">Weather: Sunny</p>
+                <img src="weather-icon.png" alt="Weather Icon">
+            </div>
+        </div>
+
+        <!-- Day 2 (collapsed by default) -->
+        <div id="day2" class="day-card card col-md-4" tabindex="0" data-day="2">
+            <div class="card-body">
+                <h5 class="card-title">Day 2</h5>
+                <!-- Add your basic day information here -->
+                <p class="card-text">Date: March 11</p>
+                <p class="card-text">Weather: Cloudy</p>
+                <img src="weather-icon.png" alt="Weather Icon">
+            </div>
+        </div>
+        <!-- Add more days as needed -->
+    </div>
+
+    <!-- Day details container -->
+    <div class="day-details-container">
+        <!-- Add detailed weather information here -->
+        <p>Day 1 Hourly Forecast, Temperature, etc.</p>
+    </div>
+
+    <div class="day-details-container">
+        <!-- Add detailed weather information here -->
+        <p>Day 2 Hourly Forecast, Temperature, etc.</p>
+    </div>
+</div>
+
+<!-- Bootstrap JS and Popper.js scripts (you may need to adjust the version) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Додаємо слухача подій для кожного дня
+        $(".day-card").click(function () {
+            // Визначаємо індекс обраного дня
+            var index = $(".day-card").index(this);
+
+            // Сховуємо всі блоки опису
+            $(".day-details-container").hide();
+
+            // Відображаємо блок опису обраного дня
+            $(".day-details-container").eq(index).show();
+
+            // Додаємо клас 'active' для обраного дня і видаляємо для інших
+            $(".day-card").removeClass("active");
+            $(this).addClass("active");
+        });
+    });
+</script>
+
+</body>
+
+</html>

@@ -24,7 +24,7 @@ public class HomeController extends BaseController {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        
 
         templateEngine.process("home", webContext, resp.getWriter());
     }
