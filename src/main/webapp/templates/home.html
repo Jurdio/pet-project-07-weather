@@ -9,25 +9,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-
+ere
 <!-- Вставка навбару -->
 <div th:include="~{/components/navbar}"></div>
+<div th:include="~{/content.html}"></div>
 
-<div class="container mt-5">
-    <!-- Тут решта вашого коду -->
-    <h1>Welcome to the Home Page1111, <span th:text="${username}"></span>!</h1>
-    <h1>Welcome to the Home Page, <span th:text="${sessionId}"></span>!</h1>
-    <!-- Add your additional content here -->
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Weather Forecast</h5>
-                <!-- Add your weather information here -->
-                <p class="card-text">Temperature: 25°C</p>
-                <p class="card-text">Weather: Sunny</p>
-                <img src="weather-icon.png" alt="Weather Icon">
-            </div>
-        </div>
 
-</div>
 </body>
 </html>

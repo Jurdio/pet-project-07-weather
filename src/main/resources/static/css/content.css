@@ -1,0 +1,51 @@
+body {
+    overflow-x: hidden; /* Disable horizontal scroll on the entire page */
+}
+
+.day-card {
+    flex: 0 0 auto;
+    width: 150px; /* Adjust as needed */
+    border: 2px solid #dee2e6; /* Added border styling */
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-right: 0; /* Remove the right margin */
+    overflow: hidden;
+    transition: background-color 0.3s, height 0.3s; /* Add transition for background and height */
+    background-color: red; /* Set the initial background color */
+    cursor: pointer; /* Add cursor pointer for clickable effect */
+    z-index: 0;
+}
+.day-card .card-body {
+    background-color: red;
+    height: 100%; /* Ensure the card body takes full height */
+}
+
+.day-card.active {
+    background-color: red;
+    margin-top: 10px;
+    background-color: red; /* Change background color when active */
+    border-bottom: 1px solid transparent; /* Remove border at the bottom */
+    border-radius: 10px 10px 0 0; /* Top-left and top-right corners rounded, bottom-left and bottom-right square */
+    z-index: 2;
+}
+
+
+.day-details-container {
+    background-color: red;
+    border-radius: 40px;
+    border: 2px solid #dee2e6; /* Added border styling */
+    padding: 20px;
+    overflow: hidden;
+    margin-top: -2px;
+    display: none;
+    width: 100%; /* Occupy full width */
+    transition: max-height 0.3s ease-in-out; /* Add transition for max-height */
+
+    box-sizing: border-box; /* Include padding in max-height */
+    z-index: 1;
+    border-top-left-radius: 0;
+}
+/*.day-card.active + .day-details-container {background-color: red;*/
+/*    display: block;*/
+/*    !* Set max-height to a large value for animation *!*/
+/*}*/
