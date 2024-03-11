@@ -25,6 +25,7 @@
             transition: background-color 0.3s, height 0.3s; /* Add transition for background and height */
             background-color: #f0f0f0; /* Set the initial background color */
             cursor: pointer; /* Add cursor pointer for clickable effect */
+            z-index: 0;
         }
 
         .day-card.active {
@@ -32,6 +33,7 @@
             background-color: #ffffff; /* Change background color when active */
             border-bottom: 1px solid transparent; /* Remove border at the bottom */
             border-radius: 10px 10px 0 0; /* Top-left and top-right corners rounded, bottom-left and bottom-right square */
+            z-index: 2;
         }
 
         .day-card .card-body {
@@ -39,21 +41,27 @@
         }
 
         .day-details-container {
+            background-color: #fff;
             border-radius: 10px;
             border: 2px solid #dee2e6; /* Added border styling */
             padding: 20px;
             overflow: hidden;
-            margin-top: -10px;
+            margin-top: -2px;
             display: none;
             width: 100%; /* Occupy full width */
             transition: max-height 0.3s ease-in-out; /* Add transition for max-height */
-            max-height: 0; /* Set initial max-height to 0 */
+
             box-sizing: border-box; /* Include padding in max-height */
+            z-index: 1;
+            border-top-left-radius: 0;
         }
+
 
         .day-card.active + .day-details-container {
             display: block;
-            max-height: 1000px; /* Set max-height to a large value for animation */
+             /* Set max-height to a large value for animation */
+
+
         }
     </style>
 </head>
@@ -89,6 +97,13 @@
 
     <!-- Day details container -->
     <div class="day-details-container row">
+        <div class="hour-details">
+            <div class="night-details col-md-4">
+                <p class="details-text">Night</p>
+                <p class="details-text">Morning</p>
+                <p class="details-text">Afternoon</p>
+            </div>
+        </div>
         <!-- Add detailed weather information here -->
         <p>Day 1 Hourly Forecast, Temperature, etc.</p>
     </div>
