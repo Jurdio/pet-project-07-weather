@@ -1,4 +1,4 @@
-package edu.weather.domain.model.dto;
+package edu.weather.controller.dto;
 
 import jakarta.annotation.Nonnull;
 

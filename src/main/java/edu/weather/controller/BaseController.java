@@ -1,7 +1,6 @@
 package edu.weather.controller;
 
-import edu.weather.domain.model.entity.Session;
-import edu.weather.domain.model.entity.User;
+import edu.weather.domain.model.Session;
 import edu.weather.domain.service.CookieService;
 import edu.weather.domain.service.SessionService;
 import edu.weather.domain.service.UserService;

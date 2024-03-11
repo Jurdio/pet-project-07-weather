@@ -1,10 +1,9 @@
 package edu.weather.domain.service;
 
-import edu.weather.domain.model.entity.Session;
+import edu.weather.domain.model.Session;
 import edu.weather.domain.repository.SessionRepository;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 public class SessionService {

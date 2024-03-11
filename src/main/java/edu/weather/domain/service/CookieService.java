@@ -1,8 +1,7 @@
 package edu.weather.domain.service;
 
-import edu.weather.domain.model.entity.Session;
+import edu.weather.domain.model.Session;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.util.Arrays;

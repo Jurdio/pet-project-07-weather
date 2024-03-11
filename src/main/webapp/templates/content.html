@@ -65,71 +65,30 @@
 <div class="container">
     <!-- All days in one horizontal container -->
     <div class="container-fluid row">
-        <div th:each="item : ${dayList.item}" id=""></div>
-        <!-- Day 1 (always expanded) -->
-        <div id="day1" class="day-card active" tabindex="0" data-day="1">
-            <div class="card-body">
-                <h5 class="card-title">Day 1</h5>
-                <!-- Add your basic day information here -->
-                <p class="card-text">Date: March 10</p>
-                <p class="card-text">Weather: Sunny</p>
-                <img src="weather-icon.png" alt="Weather Icon">
-            </div>
-        </div>
 
-        <!-- Day 2 (collapsed by default) -->
-        <div id="day2" class="day-card" tabindex="0" data-day="2">
-            <div class="card-body">
-                <h5 class="card-title">Day 2</h5>
-                <!-- Add your basic day information here -->
-                <p class="card-text">Date: March 11</p>
-                <p class="card-text">Weather: Cloudy</p>
-                <img src="weather-icon.png" alt="Weather Icon">
-            </div>
-        </div>
-        <div id="day3" class="day-card" tabindex="0" data-day="3">
-            <div class="card-body">
-                <h5 class="card-title">Day 2</h5>
-                <!-- Add your basic day information here -->
-                <p class="card-text">Date: March 11</p>
-                <p class="card-text">Weather: Cloudy</p>
-                <img src="weather-icon.png" alt="Weather Icon">
-            </div>
-        </div>
-        <div id="day4" class="day-card" tabindex="0" data-day="4">
-            <div class="card-body">
-                <h5 class="card-title">Day 2</h5>
-                <!-- Add your basic day information here -->
-                <p class="card-text">Date: March 11</p>
-                <p class="card-text">Weather: Cloudy</p>
-                <img src="weather-icon.png" alt="Weather Icon">
-            </div>
-        </div>
-        <div id="day5" class="day-card" tabindex="0" data-day="5">
-            <div class="card-body">
-                <h5 class="card-title">Day 2</h5>
-                <!-- Add your basic day information here -->
-                <p class="card-text">Date: March 11</p>
-                <p class="card-text">Weather: Cloudy</p>
-                <img src="weather-icon.png" alt="Weather Icon">
-            </div>
-        </div>
-        <div id="day5" class="day-card" tabindex="0" data-day="5">
-            <div class="card-body">
-                <h5 class="card-title">Day 2</h5>
-                <!-- Add your basic day information here -->
-                <p class="card-text">Date: March 11</p>
-                <p class="card-text">Weather: Cloudy</p>
-                <img src="weather-icon.png" alt="Weather Icon">
-            </div>
-        </div>
-        <div id="day5" class="day-card" tabindex="0" data-day="5">
-            <div class="card-body">
-                <h5 class="card-title">Day 2</h5>
-                <!-- Add your basic day information here -->
-                <p class="card-text">Date: March 11</p>
-                <p class="card-text">Weather: Cloudy</p>
-                <img src="weather-icon.png" alt="Weather Icon">
+        <div th:each="day, iterStat : ${locationDTO.days}">
+            <div th:id="'day' + ${iterStat.index + 1}" class="day-card" tabindex="0"
+                 th:data-day="${iterStat.index + 1}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${#temporals.format(day.datetime, 'EEEE', locale)}"></h5>
+                    <p class="card-text" th:text="${#temporals.format(day.datetime, 'd', locale)}"></p>
+                    <p class="card-text" th:text="${#temporals.format(day.datetime, 'MMMM', locale)}"></p>
+                    <img src="weather-icon.png" alt="Weather Icon">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Min</th>
+                            <th>Max</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td th:text="${day.tempmin}"></td>
+                            <td th:text="${day.tempmax}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <!-- Add more days as needed -->
@@ -139,7 +98,6 @@
     <!-- Day details container -->
     <div th:include="~{/test.html}" class="day-details"></div>
     <div th:include="~{/test.html}" class="day-details"></div>
-
 
 
 </div>

@@ -1,11 +1,9 @@
 package edu.weather.domain.service;
 
-import edu.weather.domain.model.dto.UserDTO;
-import edu.weather.domain.model.entity.User;
+import edu.weather.controller.dto.UserDTO;
+import edu.weather.domain.model.User;
 import edu.weather.domain.repository.UserRepository;
 import edu.weather.mapper.UserMapper;
-import org.mapstruct.Mapper;
-import org.mapstruct.control.MappingControl;
 import org.mapstruct.factory.Mappers;
 
 import java.util.Optional;

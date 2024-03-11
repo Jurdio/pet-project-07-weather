@@ -1,12 +1,11 @@
 package edu.weather.domain.repository;
 
 
-import edu.weather.domain.model.entity.Session;
+import edu.weather.domain.model.Session;
 import edu.weather.exception.DataAccessException;
 import edu.weather.util.HibernateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 import java.util.List;
 import java.util.Optional;

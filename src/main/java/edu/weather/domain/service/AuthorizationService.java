@@ -1,8 +1,8 @@
 package edu.weather.domain.service;
 
-import edu.weather.domain.model.dto.UserDTO;
-import edu.weather.domain.model.entity.Session;
-import edu.weather.domain.model.entity.User;
+import edu.weather.controller.dto.UserDTO;
+import edu.weather.domain.model.Session;
+import edu.weather.domain.model.User;
 
 public class AuthorizationService {
     private final UserService userService = new UserService();

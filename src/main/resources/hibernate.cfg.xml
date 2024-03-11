@@ -31,9 +31,9 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
 
-        <mapping class="edu.weather.domain.model.entity.User"/>
-        <mapping class="edu.weather.domain.model.entity.Location"/>
-        <mapping class="edu.weather.domain.model.entity.Session"/>
+        <mapping class="edu.weather.domain.model.User"/>
+        <mapping class="edu.weather.domain.model.Location"/>
+        <mapping class="edu.weather.domain.model.Session"/>
 
     </session-factory>
 </hibernate-configuration>

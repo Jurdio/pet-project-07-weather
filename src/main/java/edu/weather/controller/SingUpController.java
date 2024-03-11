@@ -1,8 +1,8 @@
 package edu.weather.controller;
 
-import edu.weather.domain.model.dto.UserDTO;
-import edu.weather.domain.model.entity.Session;
-import edu.weather.domain.model.entity.User;
+import edu.weather.controller.dto.UserDTO;
+import edu.weather.domain.model.Session;
+import edu.weather.domain.model.User;
 import edu.weather.domain.service.CookieService;
 import edu.weather.domain.service.RegistrationService;
 import edu.weather.domain.service.SessionService;

@@ -1,9 +1,8 @@
 package edu.weather.mapper;
 
-import edu.weather.domain.model.dto.UserDTO;
-import edu.weather.domain.model.entity.User;
+import edu.weather.controller.dto.UserDTO;
+import edu.weather.domain.model.User;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mindrot.jbcrypt.BCrypt;
 

@@ -1,21 +1,14 @@
 package edu.weather.controller;
 
-import edu.weather.domain.model.dto.UserDTO;
-import edu.weather.domain.model.entity.Session;
+import edu.weather.controller.dto.UserDTO;
+import edu.weather.domain.model.Session;
 import edu.weather.domain.service.AuthorizationService;
-import edu.weather.domain.service.SessionService;
-import edu.weather.domain.service.UserService;
-import edu.weather.util.ThymeleafUtil;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.WebContext;
 
 import java.io.IOException;
 

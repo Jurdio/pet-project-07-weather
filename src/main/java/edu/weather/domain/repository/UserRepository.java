@@ -2,7 +2,7 @@ package edu.weather.domain.repository;
 
 
 
-import edu.weather.domain.model.entity.User;
+import edu.weather.domain.model.User;
 import edu.weather.util.HibernateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Session;
