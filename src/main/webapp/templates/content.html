@@ -32,6 +32,8 @@
 
         .day-card .card-body {
             height: 100%; /* Ensure the card body takes full height */
+            text-align: center;
+
         }
 
         .day-card.active {
@@ -57,6 +59,99 @@
             border-radius: 0 40px 40px 40px;
         }
 
+        .card-text {
+            border-bottom: 1px dashed #333;
+
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: white;
+            border-right: 1px solid #dee2e6;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Видаляємо лінію праворуч у останньому елементі кожної рядка (останній підколонці) */
+
+
+        /* Додаємо лінії праворуч для парних підколонок (крім останньої) */
+        th:nth-child(odd), td:nth-child(odd) {
+            border-right: 1px solid #dee2e6;
+        }
+
+        th:last-child, td:last-child {
+            border-right: none;
+        }
+
+        th:first-child, td:first-child {
+            border-right: none;
+            background-color: white;
+            text-align: right;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #F2F2F2; /* Змініть колір фону за вашим бажанням */
+        }
+
+        .data-tooltip {
+            position: relative;
+            cursor: help;
+            border-bottom: 1px dashed #333;
+            color: black;
+        }
+
+        .data-tooltip:hover::before {
+            content: "?";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: block;
+            z-index: 1;
+            cursor: default;
+        }
+
+        .data-tooltip:hover::after {
+            content: "Як відчувається температура людини, яка одягнена відповідно до сезону";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1;
+            text-align: left;
+        }
+
+        .data-tooltip:hover::after {
+            display: block;
+        }
+    </style>
+
     </style>
 
 </head>
@@ -70,21 +165,21 @@
             <div th:id="'day' + ${iterStat.index + 1}" class="day-card" tabindex="0"
                  th:data-day="${iterStat.index + 1}">
                 <div class="card-body">
-                    <h5 class="card-title" th:text="${#temporals.format(day.datetime, 'EEEE', locale)}"></h5>
-                    <p class="card-text" th:text="${#temporals.format(day.datetime, 'd', locale)}"></p>
-                    <p class="card-text" th:text="${#temporals.format(day.datetime, 'MMMM', locale)}"></p>
-                    <img src="weather-icon.png" alt="Weather Icon">
+                    <span class="card-text" th:text="${#temporals.format(day.datetime, 'EEEE', locale)}"></span>
+                    <h2 style="margin-top: 10px" th:text="${#temporals.format(day.datetime, 'd', locale)}"></h2>
+                    <span class="card-text" th:text="${#temporals.format(day.datetime, 'MMMM', locale)}"></span>
+                    <img style="margin-top: 10px" th:src="@{'https://openweathermap.org/img/wn/' + ${day.weatherList.get(0).icon} + '@2x.png'}" alt="Weather Icon">
                     <table>
                         <thead>
                         <tr>
-                            <th>Min</th>
-                            <th>Max</th>
+                            <th><span style="font-weight: normal">min</span></th>
+                            <th><span style="font-weight: normal">max</span></th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td th:text="${day.tempmin}"></td>
-                            <td th:text="${day.tempmax}"></td>
+                            <td><h5 th:text="${day.temperature.min}"></h5></td>
+                            <td><h5 th:text="${day.temperature.min}"></h5></td>
                         </tr>
                         </tbody>
                     </table>
@@ -93,16 +188,90 @@
         </div>
         <!-- Add more days as needed -->
     </div>
+    <div th:each="day, iterStat : ${locationDTO.days}">
+        <div class="day-details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="day-info">
+                            <img width="150px" height="150px" th:src="@{'https://openweathermap.org/img/wn/' + ${day.weatherList.get(0).icon} + '@2x.png'}" alt="">
+                            <div class="sun-info">
+                                <span th:text="'Sunrise : ' + ${#temporals.format(day.sunRise, 'hh:ss')}"></span>
+                                <span th:text="'Sunset : ' + ${#temporals.format(day.sunSet, 'hh:ss')}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="day-table">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>night</th>
+                                    <th>morning</th>
+                                    <th>afternoon</th>
+                                    <th>evening</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td><img src="morning-icon.png" alt="Morning Icon"></td>
+                                    <td><img src="night-icon.png" alt="Night Icon"></td>
+                                    <td><img src="morning-icon.png" alt="Morning Icon"></td>
+                                    <td><img src="night-icon.png" alt="Night Icon"></td>
 
-
-    <!-- Day details container -->
-    <div th:include="~{/test.html}" class="day-details"></div>
-    <div th:include="~{/test.html}" class="day-details"></div>
+                                </tr>
+                                <tr style="background-color: white ">
+                                    <td>Temperature, °C</td>
+                                    <td><span th:text="${day.temperature.night}"></span></td>
+                                    <td><span th:text="${day.temperature.morn}"></span></td>
+                                    <td><span th:text="${day.temperature.day}"></span></td>
+                                    <td><span th:text="${day.temperature.eve}"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="data-tooltip"
+                                              data-tooltip="як буде відчуватися температура людиною,що одягнена по сезону">відчувається як</span>
+                                    </td>
+                                    <td th:text="${day.feelsLike.night}"></td>
+                                    <td th:text="${day.feelsLike.morn}"></td>
+                                    <td th:text="${day.feelsLike.day}"></td>
+                                    <td th:text="${day.feelsLike.eve}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Pressure, mm</td>
+                                    <td colspan="4" th:text="${day.pressure}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Humidity, %</td>
+                                    <td colspan="4" th:text="${day.humidity}"></td>
+                                </tr>
+                                <tr>
+                                    <td>Wind, m/sec</td>
+                                    <td colspan="4" th:text="${day.speed}">2.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Probability
+                                        precipitation, %
+                                    </td>
+                                    <td colspan="4" th:text="${day.pop}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>
 
 <!-- Bootstrap JS and Popper.js scripts (you may need to adjust the version) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

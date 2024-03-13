@@ -1,5 +1,6 @@
 package edu.weather.domain.service;
 
+import edu.weather.controller.dto.LocationDTO;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -19,7 +20,7 @@ public class WeatherService {
     }
 
     public String getWeatherData(String apiKey, String city) throws IOException {
-        String apiUrl = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" + city + "/" + "2024-03-11" + "/" + "2024-03-17"+ "?key=" + apiKey;
+        String apiUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&" + "cnt=7" + "&" + "units=metric" + "&" + "appid=" + apiKey;
 
         // Виконуємо HTTP-запит
         HttpGet httpGet = new HttpGet(apiUrl);
@@ -36,7 +37,9 @@ public class WeatherService {
             return "HTTP request failed: " + statusCode;
         }
     }
+    public void convertTemperatureToCelsius(LocationDTO locationDTO){
 
+    }
     public void close() throws IOException {
         httpClient.close();
     }

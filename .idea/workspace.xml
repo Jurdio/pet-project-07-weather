@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="weather:war exploded" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f38c4be-e553-47b6-8a33-84acdfeb6b3f" name="Changes" comment="feat(hibernate): add hibernate.cfg.xml">
+    <list default="true" id="8f38c4be-e553-47b6-8a33-84acdfeb6b3f" name="Changes" comment="feat: add parsing from api and refactor html using thymeleaf">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/dto/HourDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/weather/util/LocalDateDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/weather/weather/HelloServlet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/WeatherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/WeatherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/dto/DayDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/dto/DayDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/dto/LocationDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/dto/LocationDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/WeatherService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/content.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/test.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,12 +34,28 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feat/content" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -40,28 +73,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CheckDatabaseConnection.executor": "Run",
-    "Maven.weather [clean].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CheckDatabaseConnection.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Maven.weather [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.weather [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Smart Tomcat.Tomcat: weather.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.18.executor&quot;: &quot;Run&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat/content-add-data-from-api&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dmytro/IdeaProjects/weather/src/main/webapp/static/style&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mariadb"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
     ]
   }
-}]]></component>
-  <component name="RunManager" selected="Application.CheckDatabaseConnection">
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dmytro\IdeaProjects\weather\src\main\webapp\static\style" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dmytro\IdeaProjects\weather\src\main\resources\static\css" />
+      <recent name="C:\Users\Dmytro\IdeaProjects\weather\src\main\resources" />
+      <recent name="C:\Users\Dmytro\IdeaProjects\weather\src\main\resources\static\style" />
+      <recent name="C:\Users\Dmytro\IdeaProjects\weather\src\main\resources\static" />
+      <recent name="C:\Users\Dmytro\IdeaProjects\weather\src\main\webapp\static" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 10.1.18">
     <configuration name="CheckDatabaseConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.weather.CheckDatabaseConnection" />
       <module name="weather" />
@@ -83,12 +140,77 @@
           </settings>
         </artifact>
       </deployment>
-      <server-settings />
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="3f55a1f6-3aa6-4b14-95f0-8a78272a3d50" />
+      </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="49355" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
@@ -96,8 +218,29 @@
         </option>
       </method>
     </configuration>
+    <configuration name="Tomcat: weather" type="com.poratu.idea.plugins.tomcat" temporary="true">
+      <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
+      <predefined_log_file enabled="true" id="Tomcat Access Log" />
+      <predefined_log_file id="Tomcat Catalina Log" />
+      <predefined_log_file id="Tomcat Manager Log" />
+      <predefined_log_file id="Tomcat Host Manager Log" />
+      <option name="contextPath" value="/weather" />
+      <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/10.1.18" />
+          <option name="path" value="D:/Tomcat" />
+          <option name="version" value="10.1.18.0" />
+        </TomcatInfo>
+      </option>
+      <module name="weather" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Smart Tomcat.Tomcat: weather" />
         <item itemvalue="Application.CheckDatabaseConnection" />
       </list>
     </recent_temporary>
@@ -113,7 +256,26 @@
       <workItem from="1709131639964" duration="753000" />
       <workItem from="1709134168504" duration="609000" />
       <workItem from="1709215099655" duration="871000" />
-      <workItem from="1709215987826" duration="1611000" />
+      <workItem from="1709215987826" duration="4046000" />
+      <workItem from="1709478094481" duration="13391000" />
+      <workItem from="1709556316560" duration="984000" />
+      <workItem from="1709564939976" duration="6281000" />
+      <workItem from="1709631453105" duration="11513000" />
+      <workItem from="1709677151450" duration="17668000" />
+      <workItem from="1709765270397" duration="10298000" />
+      <workItem from="1709849644575" duration="9078000" />
+      <workItem from="1709894135380" duration="22456000" />
+      <workItem from="1709936176615" duration="7518000" />
+      <workItem from="1709943727219" duration="20000" />
+      <workItem from="1710016924704" duration="140000" />
+      <workItem from="1710017727478" duration="4686000" />
+      <workItem from="1710067406675" duration="32000" />
+      <workItem from="1710089978617" duration="230000" />
+      <workItem from="1710094055524" duration="8914000" />
+      <workItem from="1710142827788" duration="23896000" />
+      <workItem from="1710176582205" duration="28796000" />
+      <workItem from="1710277591356" duration="3932000" />
+      <workItem from="1710351548065" duration="5974000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -131,7 +293,319 @@
       <option name="project" value="LOCAL" />
       <updated>1709220427032</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix(hibernate): fix field for connection to DB in hibernate.cfg.xml">
+      <option name="closed" value="true" />
+      <created>1709221151480</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1709221151480</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix(model): add User model">
+      <option name="closed" value="true" />
+      <created>1709223531384</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709223531384</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix(model): add Session model">
+      <option name="closed" value="true" />
+      <created>1709223545108</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1709223545108</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat(model): add Location model">
+      <option name="closed" value="true" />
+      <created>1709223561498</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1709223561498</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix: fix hibernate.cfg.xml with close connection pool">
+      <option name="closed" value="true" />
+      <created>1709556928599</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1709556928599</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: add HibernateUtil.java for optimize session factory">
+      <option name="closed" value="true" />
+      <created>1709556969576</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1709556969576</updated>
+    </task>
+    <task id="LOCAL-00009" summary="chore: move models to other package">
+      <option name="closed" value="true" />
+      <created>1709557030072</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1709557030072</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: add CrudRepository.java">
+      <option name="closed" value="true" />
+      <created>1709557055059</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709557055059</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: write implementation for CrudRepository - SessionRepository.java, UserRepository.java">
+      <option name="closed" value="true" />
+      <created>1709557107288</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1709557107288</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: add services for User and Session">
+      <option name="closed" value="true" />
+      <created>1709557159884</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1709557159884</updated>
+    </task>
+    <task id="LOCAL-00013" summary="chore: move index.jsp to other package, add jakson dependency in pom.xml, write signIn.html">
+      <option name="closed" value="true" />
+      <created>1709557243868</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1709557243868</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: add home.html">
+      <option name="closed" value="true" />
+      <created>1709750183433</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750183433</updated>
+    </task>
+    <task id="LOCAL-00015" summary="feat: add Thymeleaf">
+      <option name="closed" value="true" />
+      <created>1709750222221</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750222221</updated>
+    </task>
+    <task id="LOCAL-00016" summary="feat: add UserDTO">
+      <option name="closed" value="true" />
+      <created>1709750243650</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750243650</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat: add BaseController">
+      <option name="closed" value="true" />
+      <created>1709750275493</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750275493</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat: add services for register, authorization and hashing pass">
+      <option name="closed" value="true" />
+      <created>1709750353897</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750353897</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat: add CookieService">
+      <option name="closed" value="true" />
+      <created>1709750364504</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750364504</updated>
+    </task>
+    <task id="LOCAL-00020" summary="chore: refactor SignInController and SingUpController">
+      <option name="closed" value="true" />
+      <created>1709750397941</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750397941</updated>
+    </task>
+    <task id="LOCAL-00021" summary="chore: refactor method save() in UserRepository.java">
+      <option name="closed" value="true" />
+      <created>1709750419933</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750419933</updated>
+    </task>
+    <task id="LOCAL-00022" summary="feat: implement interface in SessionRepository.java">
+      <option name="closed" value="true" />
+      <created>1709750594815</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750594815</updated>
+    </task>
+    <task id="LOCAL-00023" summary="chore: add new dependency in pom.xml">
+      <option name="closed" value="true" />
+      <created>1709750614806</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750614806</updated>
+    </task>
+    <task id="LOCAL-00024" summary="chore: refactor User and UserMapper">
+      <option name="closed" value="true" />
+      <created>1709750634410</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750634410</updated>
+    </task>
+    <task id="LOCAL-00025" summary="feat: add HomeController">
+      <option name="closed" value="true" />
+      <created>1709750646108</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750646108</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat: add DataAccessException">
+      <option name="closed" value="true" />
+      <created>1709750658533</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750658533</updated>
+    </task>
+    <task id="LOCAL-00027" summary="chore: refactor signIn.html and signUp.html">
+      <option name="closed" value="true" />
+      <created>1709750680415</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1709750680415</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat: write registration logic">
+      <option name="closed" value="true" />
+      <created>1709897134765</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1709897134766</updated>
+    </task>
+    <task id="LOCAL-00029" summary="chore: refactor">
+      <option name="closed" value="true" />
+      <created>1709897151341</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1709897151341</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fix: fix bug, change dependency">
+      <option name="closed" value="true" />
+      <created>1709898534418</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1709898534418</updated>
+    </task>
+    <task id="LOCAL-00031" summary="feat: add component html and logo">
+      <option name="closed" value="true" />
+      <created>1710022235249</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1710022235250</updated>
+    </task>
+    <task id="LOCAL-00032" summary="feat: add component html">
+      <option name="closed" value="true" />
+      <created>1710022251059</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1710022251059</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fix: fix hibernate.cfg.xml compose">
+      <option name="closed" value="true" />
+      <created>1710022278114</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1710022278114</updated>
+    </task>
+    <task id="LOCAL-00034" summary="feat: add Authorization in project">
+      <option name="closed" value="true" />
+      <created>1710022313774</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1710022313774</updated>
+    </task>
+    <task id="LOCAL-00035" summary="feat: add card for days">
+      <option name="closed" value="true" />
+      <created>1710110564677</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1710110564677</updated>
+    </task>
+    <task id="LOCAL-00036" summary="feat: add border in day card and add animation for active state">
+      <option name="closed" value="true" />
+      <created>1710113013218</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1710113013218</updated>
+    </task>
+    <task id="LOCAL-00037" summary="chore: fix bug">
+      <option name="closed" value="true" />
+      <created>1710113599540</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1710113599540</updated>
+    </task>
+    <task id="LOCAL-00038" summary="feat: add table with content.html">
+      <option name="closed" value="true" />
+      <created>1710148982486</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1710148982486</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fix: fix bug with bootstrap">
+      <option name="closed" value="true" />
+      <created>1710168559391</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1710168559391</updated>
+    </task>
+    <task id="LOCAL-00040" summary="chore: refactor">
+      <option name="closed" value="true" />
+      <created>1710177346960</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1710177346960</updated>
+    </task>
+    <task id="LOCAL-00041" summary="feat: add parsing from api and refactor html using thymeleaf">
+      <option name="closed" value="true" />
+      <created>1710187002407</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1710187002407</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,15 +616,50 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feat/content-add-data-from-api" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="init" />
-    <MESSAGE value="feat(hibernate): add hibernate.cfg.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(hibernate): add hibernate.cfg.xml" />
+    <MESSAGE value="feat: add UserDTO" />
+    <MESSAGE value="feat: add BaseController" />
+    <MESSAGE value="feat: add services for register, authorization and hashing pass" />
+    <MESSAGE value="feat: add CookieService" />
+    <MESSAGE value="chore: refactor SignInController and SingUpController" />
+    <MESSAGE value="chore: refactor method save() in UserRepository.java" />
+    <MESSAGE value="feat: implement interface in SessionRepository.java" />
+    <MESSAGE value="chore: add new dependency in pom.xml" />
+    <MESSAGE value="chore: refactor User and UserMapper" />
+    <MESSAGE value="feat: add HomeController" />
+    <MESSAGE value="feat: add DataAccessException" />
+    <MESSAGE value="chore: refactor signIn.html and signUp.html" />
+    <MESSAGE value="feat: write registration logic" />
+    <MESSAGE value="fix: fix bug, change dependency" />
+    <MESSAGE value="feat: add component html and logo" />
+    <MESSAGE value="feat: add component html" />
+    <MESSAGE value="fix: fix hibernate.cfg.xml compose" />
+    <MESSAGE value="feat: add Authorization in project" />
+    <MESSAGE value="feat: add card for days" />
+    <MESSAGE value="feat: add border in day card and add animation for active state" />
+    <MESSAGE value="chore: fix bug" />
+    <MESSAGE value="feat: add table with content.html" />
+    <MESSAGE value="fix: fix bug with bootstrap" />
+    <MESSAGE value="chore: refactor" />
+    <MESSAGE value="feat: add parsing from api and refactor html using thymeleaf" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add parsing from api and refactor html using thymeleaf" />
   </component>
 </project>
