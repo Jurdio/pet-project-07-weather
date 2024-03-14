@@ -55,6 +55,6 @@ public class SingUpController extends BaseController {
 
         resp.addCookie(cookie);
         resp.addCookie(cookie1);
-        resp.sendRedirect(req.getContextPath() + "/home");
+        resp.sendRedirect(req.getContextPath() + "/weather");
     }
 }

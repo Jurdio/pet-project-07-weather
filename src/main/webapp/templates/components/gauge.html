@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отримати місцезнаходження користувача</title>
+</head>
+<body onload="getLocation()"> <!-- Викликати getLocation() при завантаженні сторінки -->
+<span> Hello!</span>
+<!-- Скрипт JavaScript для отримання місцезнаходження -->
+<script>
+    // Функція для отримання місцезнаходження
+    function getLocation() {
+        // Перевірка, чи підтримує браузер геолокацію
+        if (navigator.geolocation) {
+            // Викликаємо метод getCurrentPosition, який отримує поточне місцезнаходження користувача
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            // Повідомлення про те, що геолокація не підтримується цим браузером
+            alert("Геолокація не підтримується цим браузером.");
+        }
+    }
+
+    // Функція для відображення місцезнаходження
+    function showPosition(position) {
+        // Отримання координат широти та довготи
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        // Повідомлення про координати місцезнаходження
+        alert("Широта: " + latitude + ", Довгота: " + longitude);
+    }
+</script>
+</body>
+</html>
