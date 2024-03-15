@@ -10,7 +10,7 @@
         .star {
             font-size: 30px;
             cursor: pointer;
-            vertical-align: center;
+            vertical-align: middle;
         }
 
         .star-icon {
@@ -78,14 +78,25 @@
                 <span class="star-icon fa fa-star"></span>
             </span>
         </div>
+        <div class="col-md-4" style="padding-right: 0;">
+            <span style="color: #9d9d9d; font-size: 20px;">Weather <span style="font-weight: bold; color: black" th:text="'in ' + ${locationDTO.name}"></span></span>
+            <span class="star">
+                <span class="star-icon fa fa-star"></span>
+            </span>
+        </div>
+        <div class="col-md-4" style="padding-right: 0;">
+            <span style="color: #9d9d9d; font-size: 20px;">Weather <span style="font-weight: bold; color: black" th:text="'in ' + ${locationDTO.name}"></span></span>
+            <span class="star">
+                <span class="star-icon fa fa-star"></span>
+            </span>
+        </div>
     </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    var star = $(".star");
-
-    star.click(function() {
+    $(".star").click(function() {
+        var star = $(this);
         if (star.hasClass("starred")) {
             star.removeClass("starred");
             star.addClass("unstarred");
