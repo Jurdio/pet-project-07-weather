@@ -3,33 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Отримати місцезнаходження користувача</title>
-</head>
-<body onload="getLocation()"> <!-- Викликати getLocation() при завантаженні сторінки -->
-<span> Hello!</span>
-<!-- Скрипт JavaScript для отримання місцезнаходження -->
-<script>
-    // Функція для отримання місцезнаходження
-    function getLocation() {
-        // Перевірка, чи підтримує браузер геолокацію
-        if (navigator.geolocation) {
-            // Викликаємо метод getCurrentPosition, який отримує поточне місцезнаходження користувача
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            // Повідомлення про те, що геолокація не підтримується цим браузером
-            alert("Геолокація не підтримується цим браузером.");
+    <title>Star Animation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .star {
+            font-size: 30px;
+            cursor: pointer;
+            vertical-align: center;
         }
-    }
 
-    // Функція для відображення місцезнаходження
-    function showPosition(position) {
-        // Отримання координат широти та довготи
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
+        .star-icon {
+            display: inline-block;
+            transition: all .2s ease-in;
+            color: #9d9d9d;
+        }
 
-        // Повідомлення про координати місцезнаходження
-        alert("Широта: " + latitude + ", Довгота: " + longitude);
-    }
+        .starred .star-icon {
+            color: #BADAFB;
+        }
+
+        .starred {
+            animation: spin .6s forwards;
+            transform-origin: 50% 50%;
+            transition-timing-function: ease-in-out;
+        }
+
+        .starred .star-icon {
+            animation: spin .6s forwards;
+            transform-origin: 50% 50%;
+            -webkit-transform-origin: 50% 50%;
+            transition-timing-function: ease-in-out;
+        }
+
+        .unstarred .star-icon {
+            animation: unspin .3s forwards;
+            transform-origin: 50% 50%;
+            -webkit-transform-origin: 50% 50%;
+            transition-timing-function: ease-in-out;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            33% {
+                transform: rotate(175deg);
+            }
+            66% {
+                transform: rotate(120deg);
+            }
+            100% {
+                transform: rotate(144deg);
+            }
+        }
+
+        @keyframes unspin {
+            0% {
+                transform: rotate(142deg);
+            }
+            100% {
+                transform: rotate(72deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-md-4" style="padding-right: 0;">
+            <span style="color: #9d9d9d; font-size: 20px;">Weather <span style="font-weight: bold; color: black" th:text="'in ' + ${locationDTO.name}"></span></span>
+            <span class="star">
+                <span class="star-icon fa fa-star"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    var star = $(".star");
+
+    star.click(function() {
+        if (star.hasClass("starred")) {
+            star.removeClass("starred");
+            star.addClass("unstarred");
+        } else if (star.hasClass("unstarred")) {
+            star.removeClass("unstarred");
+            star.addClass("starred");
+        } else {
+            star.addClass("starred");
+        }
+    });
 </script>
+
 </body>
 </html>

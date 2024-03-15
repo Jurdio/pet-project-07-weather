@@ -166,57 +166,61 @@
         .day-part th {
             font-weight: normal;
         }
-        .thermometer{
-            margin:50% 0 0 50%;
-            left:-15px;
-            top:-100px;
-            width:22px;
-            height:150px;
-            display:block;
-            font:bold 14px/152px helvetica, arial, sans-serif;
+
+        .thermometer {
+            margin: 50% 0 0 50%;
+            left: -15px;
+            top: -100px;
+            width: 22px;
+            height: 150px;
+            display: block;
+            font: bold 14px/152px helvetica, arial, sans-serif;
             text-indent: 36px;
             background: -webkit-linear-gradient(top, #fff 0%, #fff 50%, #db3f02 50%, #db3f02 100%);
-            border-radius:22px 22px 0 0;
-            border:5px solid #4a1c03;
-            border-bottom:none;
-            position:absolute;
-            box-shadow:inset 0 0 0 4px #fff;
-            color:#4a1c03;
+            border-radius: 22px 22px 0 0;
+            border: 5px solid #4a1c03;
+            border-bottom: none;
+            position: absolute;
+            box-shadow: inset 0 0 0 4px #fff;
+            color: #4a1c03;
         }
 
         /* Thermometer Bulb */
-        .thermometer:before{
-            content:' ';
-            width:44px;
-            height:44px;
-            display:block;
-            position:absolute;
-            top:142px;
-            left:-16px;
+        .thermometer:before {
+            content: ' ';
+            width: 44px;
+            height: 44px;
+            display: block;
+            position: absolute;
+            top: 142px;
+            left: -16px;
             z-index: 0; /* Place the bulb under the column */
-            background:#db3f02;
-            border-radius:44px;
-            border:5px solid #4a1c03;
-            box-shadow:inset 0 0 0 4px #fff;
+            background: #db3f02;
+            border-radius: 44px;
+            border: 5px solid #4a1c03;
+            box-shadow: inset 0 0 0 4px #fff;
         }
 
         /* This piece here connects the column with the bulb */
-        .thermometer:after{
-            height:7px;
-            display:block;
-            position:absolute;
-            top:146px;
-            left:4px;
-            background:#db3f02;
+        .thermometer:after {
+            height: 7px;
+            display: block;
+            position: absolute;
+            top: 146px;
+            left: 4px;
+            background: #db3f02;
         }
+
         .day-card-table tbody tr td {
             background-color: transparent;
         }
+
         .day-card-table table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
+
         .sun-info {
             margin-top: 125px;
             border: 1px solid #b0aeae;
@@ -230,30 +234,35 @@
 </head>
 
 <body>
+<!--<div class="container">-->
+<!--    <div class="row"></div>-->
+<!--    <div class="col-md-5" style="padding-left: 0; font-size: 20px">-->
+<!--        <span style="color: #9d9d9d">Weather <span style="font-weight: bolder; color: black"-->
+<!--                                                   th:text="'in ' + ${locationDTO.name}"></span></span>-->
+<!--    </div>-->
+<!--    <div class="col-md-5">-->
+<!--        <div th:include="~{components/gauge}"></div>-->
+<!--    </div>-->
+<!--</div>-->
+<div th:include="~{components/gauge}"></div>
 <div class="container">
-    <div class="container">
-        <div class="col-md-5">
-            <span>Weather <span></span></span>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div th:each="day, iterStat : ${locationDTO.days}">
-                <div class="col-md-1" style="padding: 0 0 0 0">
-                    <div class="day-row">
-                        <div th:id="'day' + ${iterStat.index + 1}" class="day-card" tabindex="0"
-                             th:data-day="${iterStat.index + 1}">
-                            <div class="card-body">
+    <div class="row">
+        <div th:each="day, iterStat : ${locationDTO.days}">
+            <div class="col-md-1" style="padding: 0 0 0 0">
+                <div class="day-row">
+                    <div th:id="'day' + ${iterStat.index + 1}" class="day-card" tabindex="0"
+                         th:data-day="${iterStat.index + 1}">
+                        <div class="card-body">
                                 <span class="card-text"
                                       th:text="${#temporals.format(day.datetime, 'EEEE', locale)}"></span>
-                                <h1 style="margin-top: 10px"
-                                    th:text="${#temporals.format(day.datetime, 'd', locale)}"></h1>
-                                <span class="card-text"
-                                      th:text="${#temporals.format(day.datetime, 'MMMM', locale)}"></span>
-                                <img style="margin-top: 10px"
-                                     th:src="@{'https://openweathermap.org/img/wn/' + ${day.weatherList.get(0).icon} + '@2x.png'}"
-                                     alt="Weather Icon">
-                                <div class="day-card-table">
+                            <h1 style="margin-top: 10px"
+                                th:text="${#temporals.format(day.datetime, 'd', locale)}"></h1>
+                            <span class="card-text"
+                                  th:text="${#temporals.format(day.datetime, 'MMMM', locale)}"></span>
+                            <img style="margin-top: 10px"
+                                 th:src="@{'https://openweathermap.org/img/wn/' + ${day.weatherList.get(0).icon} + '@2x.png'}"
+                                 alt="Weather Icon">
+                            <div class="day-card-table">
                                 <table>
                                     <thead>
                                     <tr>
@@ -268,7 +277,6 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -276,8 +284,9 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
+</div>
+<div class="container">
+    <div class="row">
         <div class="col-md-12" style="padding-left: 0">
             <div th:each="day, iterStat : ${locationDTO.days}">
                 <div class="day-details">
@@ -289,11 +298,14 @@
                                          th:src="@{'https://openweathermap.org/img/wn/' + ${day.weatherList.get(0).icon} + '@2x.png'}"
                                          alt="">
                                     <div class="container">
-                                        <span class="thermometer" style="margin-left: 200px" th:text="${day.temperature.day} + '&deg;'">C</span>
+                                        <span class="thermometer" style="margin-left: 200px"
+                                              th:text="${day.temperature.day} + '&deg;'">C</span>
                                     </div>
                                     <div class="sun-info">
-                                        <span style="color: #9d9d9d">Sunrise :<span style="color: black" th:text="${#temporals.format(day.sunRise, 'hh:ss')}"></span></span>
-                                        <span style="color: #9d9d9d">Sunset :<span style="color: black" th:text="${#temporals.format(day.sunSet, 'hh:ss')}"></span></span>
+                                        <span style="color: #9d9d9d">Sunrise :<span style="color: black"
+                                                                                    th:text="${#temporals.format(day.sunRise, 'hh:ss')}"></span></span>
+                                        <span style="color: #9d9d9d">Sunset :<span style="color: black"
+                                                                                   th:text="${#temporals.format(day.sunSet, 'hh:ss')}"></span></span>
                                     </div>
                                 </div>
                             </div>
@@ -354,9 +366,9 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
-    <!-- All days in one horizontal container -->
+</div>
+<!-- All days in one horizontal container -->
 
 
 </div>

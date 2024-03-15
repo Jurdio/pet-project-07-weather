@@ -1,6 +1,10 @@
 package edu.weather.domain.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.jayway.jsonpath.JsonPath;
 import edu.weather.controller.dto.LocationDTO;
+import edu.weather.domain.model.City;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -9,9 +13,9 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.util.Locale;
 
 public class WeatherService {
+    private static final String apiKey = "6d0aadf4bc13feed027bc8c22d7a338d";
 
     private CloseableHttpClient httpClient;
 
@@ -19,7 +23,7 @@ public class WeatherService {
         this.httpClient = HttpClients.createDefault();
     }
 
-    public String getWeatherData(String apiKey, String city) throws IOException {
+    public String getWeatherDataByName(String apiKey, String city) throws IOException {
         String apiUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&" + "cnt=7" + "&" + "units=metric" + "&" + "appid=" + apiKey;
 
         // Виконуємо HTTP-запит
@@ -37,9 +41,20 @@ public class WeatherService {
             return "HTTP request failed: " + statusCode;
         }
     }
-    public void convertTemperatureToCelsius(LocationDTO locationDTO){
 
+    public LocationDTO findLocationByCity(City city) throws IOException {
+        String weatherData = getWeatherDataByName(apiKey, city.getName());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        LocationDTO locationDTO = objectMapper.readValue(weatherData, LocationDTO.class);
+
+        locationDTO.setName(JsonPath.parse(weatherData).read("$.city.name"));
+
+        return locationDTO;
     }
+
+
     public void close() throws IOException {
         httpClient.close();
     }

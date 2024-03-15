@@ -6,6 +6,8 @@ import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import edu.weather.controller.dto.DayDTO;
 import edu.weather.controller.dto.LocationDTO;
+import edu.weather.domain.model.City;
+import edu.weather.domain.service.GeoIPService;
 import edu.weather.domain.service.WeatherService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,28 +22,21 @@ import java.util.Locale;
 public class WeatherController extends BaseController {
 
     private WeatherService weatherService;
+    private GeoIPService geoIPService;
 
 
     @Override
     public void init() throws ServletException {
         super.init();
         weatherService = new WeatherService();
+        geoIPService = new GeoIPService();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String apiKey = "6d0aadf4bc13feed027bc8c22d7a338d";
-        String city = "Lviv";
+        City city = geoIPService.getCityByIp(request);
+        System.out.print(city.getName());
 
-        String weatherData = weatherService.getWeatherData(apiKey, city);
-
-        // Створюємо ObjectMapper і додаємо JavaTimeModule
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
-        LocationDTO locationDTO = objectMapper.readValue(weatherData, LocationDTO.class);
-        locationDTO.setName(JsonPath.parse(weatherData).read("$.city.name"));
-
-
-
+        LocationDTO locationDTO = weatherService.findLocationByCity(city);
 
         webContext.setVariable("locationDTO", locationDTO);
         webContext.setVariable("locale", new Locale("en"));
