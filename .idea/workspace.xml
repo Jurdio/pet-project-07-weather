@@ -9,21 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f38c4be-e553-47b6-8a33-84acdfeb6b3f" name="Changes" comment="feat: add geo searching and icon for saving location">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/weather/domain/repository/LocationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/LocationService.java" afterDir="false" />
+    <list default="true" id="8f38c4be-e553-47b6-8a33-84acdfeb6b3f" name="Changes" comment="feat: add saving user`s lolcations">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/WeatherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/WeatherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/dto/DayDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/dto/DayDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/dto/HourDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/domain/model/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/domain/model/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/GeoIPService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/GeoIPService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/WeatherService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/components/gauge.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/components/gauge.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/LocationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/LocationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/content.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/mylocations.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/mylocations.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="f85d6ac80787b60c66f662bd9087f85b755cab74" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -87,7 +78,7 @@
     "Tomcat Server.Tomcat 10.1.18.executor": "Run",
     "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
     "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "feat/add-autogeoserching",
+    "git-widget-placeholder": "fix/bug-with-userlocation",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Dmytro/IdeaProjects/weather/src/main/resources/hibernate.cfg.xml",
     "list.type.of.created.stylesheet": "CSS",
@@ -244,7 +235,8 @@
       <workItem from="1710427354353" duration="13512000" />
       <workItem from="1710491142429" duration="10752000" />
       <workItem from="1710670128210" duration="782000" />
-      <workItem from="1710671523694" duration="13620000" />
+      <workItem from="1710671523694" duration="15307000" />
+      <workItem from="1710692294516" duration="3530000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -582,7 +574,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710503457295</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="feat: add saving user`s lolcations">
+      <option name="closed" value="true" />
+      <created>1710687818885</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1710687818885</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,7 +612,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add BaseController" />
     <MESSAGE value="feat: add services for register, authorization and hashing pass" />
     <MESSAGE value="feat: add CookieService" />
     <MESSAGE value="chore: refactor SignInController and SingUpController" />
@@ -637,6 +636,7 @@
     <MESSAGE value="chore: refactor" />
     <MESSAGE value="feat: add parsing from api and refactor html using thymeleaf" />
     <MESSAGE value="feat: add geo searching and icon for saving location" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add geo searching and icon for saving location" />
+    <MESSAGE value="feat: add saving user`s lolcations" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add saving user`s lolcations" />
   </component>
 </project>

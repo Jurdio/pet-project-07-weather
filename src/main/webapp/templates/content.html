@@ -358,10 +358,9 @@
         </div>
     </div>
 </div>
+
 <!-- All days in one horizontal container -->
 
-
-</div>
 
 <!-- Bootstrap JS and Popper.js scripts (you may need to adjust the version) -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -370,43 +369,49 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Функція для відображення першого елемента та його деталей
-        function showFirstElementDetails() {
-            // Відображаємо блок опису першого елемента
-            $(".day-details:first").show();
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+<!--        // Функція для відображення першого елемента та його деталей-->
+<!--        function showFirstElementDetails() {-->
+<!--            console.log("Showing first element details...");-->
+<!--            // Відображаємо блок опису першого елемента-->
+<!--            $(".day-details:first").show();-->
 
-            // Додаємо клас 'active' для першого елемента
-            $(".day-card:first").addClass("active");
-        }
+<!--            // Додаємо клас 'active' для першого елемента-->
+<!--            $(".day-card:first").addClass("active");-->
+<!--        }-->
 
-        // Викликаємо функцію при завантаженні сторінки
-        showFirstElementDetails();
+<!--        // Викликаємо функцію при завантаженні сторінки-->
+<!--        showFirstElementDetails();-->
 
-        // Додаємо слухача подій для кожного дня
-        $(".day-card").click(function () {
-            // Перевіряємо, чи обраний елемент вже має клас 'active'
-            var isActive = $(this).hasClass("active");
+<!--        // Додаємо слухача подій для кожного дня-->
+<!--        $(".day-card").click(function () {-->
+<!--            console.log("Day card clicked...");-->
+<!--            // Перевіряємо, чи обраний елемент вже має клас 'active'-->
+<!--            var isActive = $(this).hasClass("active");-->
 
-            // Сховуємо всі блоки опису
-            $(".day-details").hide();
+<!--            // Сховуємо всі блоки опису-->
+<!--            $(".day-details").hide();-->
 
-            // Відображаємо блок опису обраного дня тільки, якщо він неактивний
-            if (!isActive) {
-                var index = $(".day-card").index(this);
-                $(".day-details").eq(index).show();
-            }
+<!--            // Відображаємо блок опису обраного дня тільки, якщо він неактивний-->
+<!--            if (!isActive) {-->
+<!--                var index = $(".day-card").index(this);-->
+<!--                $(".day-details").eq(index).show();-->
+<!--            }-->
 
-            // Змінюємо клас 'active' для обраного дня і видаляємо для інших
-            $(".day-card").removeClass("active");
-            if (!isActive) {
-                $(this).addClass("active");
-            }
-        });
-    });
+<!--            // Змінюємо клас 'active' для обраного дня і видаляємо для інших-->
+<!--            $(".day-card").removeClass("active");-->
+<!--            if (!isActive) {-->
+<!--                $(this).addClass("active");-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
 
-</script>
+
+
+
+
+<!--</script>-->
 
 </body>
 

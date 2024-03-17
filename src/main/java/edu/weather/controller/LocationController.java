@@ -34,7 +34,8 @@ public class LocationController extends BaseController {
             LocationDTO locationDTO = weatherService.findLocationByCity(City.builder()
                     .name(location.getName())
                     .longitude(Double.parseDouble(String.valueOf(location.getLongitude())))
-                    .latitude(Double.parseDouble(String.valueOf(location.getLatitude()))).build());
+                    .latitude(Double.parseDouble(String.valueOf(location.getLatitude())))
+                    .build());
             locationDTOList.add(locationDTO);
         }
         webContext.setVariable("locations", locationDTOList);
