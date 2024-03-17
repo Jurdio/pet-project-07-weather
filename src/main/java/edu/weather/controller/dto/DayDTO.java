@@ -1,12 +1,15 @@
 package edu.weather.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import edu.weather.util.LocalDateDeserializer;
+import edu.weather.util.LocalDateTimeDeserializer;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -19,10 +22,10 @@ public class DayDTO {
     @JsonProperty("dt")
     @JsonDeserialize(using = LocalDateDeserializer.class) // Вказуємо Jackson використовувати десеріалізатор
     private LocalDate datetime;
-    @JsonProperty("sunrise")
-    private LocalDate sunRise;
-    @JsonProperty("sunset")
-    private LocalDate sunSet;
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime sunrise;
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    private LocalDateTime sunset;
     @JsonProperty("temp")
     private Temperature temperature;
     @JsonProperty("feels_like")

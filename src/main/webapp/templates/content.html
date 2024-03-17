@@ -234,16 +234,6 @@
 </head>
 
 <body>
-<!--<div class="container">-->
-<!--    <div class="row"></div>-->
-<!--    <div class="col-md-5" style="padding-left: 0; font-size: 20px">-->
-<!--        <span style="color: #9d9d9d">Weather <span style="font-weight: bolder; color: black"-->
-<!--                                                   th:text="'in ' + ${locationDTO.name}"></span></span>-->
-<!--    </div>-->
-<!--    <div class="col-md-5">-->
-<!--        <div th:include="~{components/gauge}"></div>-->
-<!--    </div>-->
-<!--</div>-->
 <div th:include="~{components/gauge}"></div>
 <div class="container">
     <div class="row">
@@ -273,7 +263,7 @@
                                     <tbody>
                                     <tr>
                                         <td><h4 th:text="${day.temperature.min} + '°'"></h4></td>
-                                        <td><h4 th:text="${day.temperature.min} + '°'"></h4></td>
+                                        <td><h4 th:text="${day.temperature.max} + '°'"></h4></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -302,10 +292,10 @@
                                               th:text="${day.temperature.day} + '&deg;'">C</span>
                                     </div>
                                     <div class="sun-info">
-                                        <span style="color: #9d9d9d">Sunrise :<span style="color: black"
-                                                                                    th:text="${#temporals.format(day.sunRise, 'hh:ss')}"></span></span>
-                                        <span style="color: #9d9d9d">Sunset :<span style="color: black"
-                                                                                   th:text="${#temporals.format(day.sunSet, 'hh:ss')}"></span></span>
+                                        <span style="color: #9d9d9d">Sunrise : <span style="color: black"
+                                                                                    th:text="${#temporals.format(day.sunRise, 'HH:mm')}"></span></span>
+                                        <span style="color: #9d9d9d">Sunset : <span style="color: black"
+                                                                                   th:text="${#temporals.format(day.sunSet, 'HH:mm')}"></span></span>
                                     </div>
                                 </div>
                             </div>

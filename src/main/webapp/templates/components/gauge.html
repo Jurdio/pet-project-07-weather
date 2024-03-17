@@ -78,36 +78,36 @@
                 <span class="star-icon fa fa-star"></span>
             </span>
         </div>
-        <div class="col-md-4" style="padding-right: 0;">
-            <span style="color: #9d9d9d; font-size: 20px;">Weather <span style="font-weight: bold; color: black" th:text="'in ' + ${locationDTO.name}"></span></span>
-            <span class="star">
-                <span class="star-icon fa fa-star"></span>
-            </span>
-        </div>
-        <div class="col-md-4" style="padding-right: 0;">
-            <span style="color: #9d9d9d; font-size: 20px;">Weather <span style="font-weight: bold; color: black" th:text="'in ' + ${locationDTO.name}"></span></span>
-            <span class="star">
-                <span class="star-icon fa fa-star"></span>
-            </span>
-        </div>
     </div>
+    <form id="hiddenForm" method="POST" action="/weather_war_exploded/weather" style="display: none;">
+        <input type="hidden" name="name" th:value="${locationDTO.name}"/>
+        <input type="hidden" name="latitude" th:value="${locationDTO.latitude}"/>
+        <input type="hidden" name="longitude" th:value="${locationDTO.longitude}"/>
+    </form>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(".star").click(function() {
-        var star = $(this);
-        if (star.hasClass("starred")) {
-            star.removeClass("starred");
-            star.addClass("unstarred");
-        } else if (star.hasClass("unstarred")) {
-            star.removeClass("unstarred");
-            star.addClass("starred");
-        } else {
-            star.addClass("starred");
-        }
+    $(document).ready(function() {
+        $(".star").click(function() {
+            var star = $(this);
+            if (star.hasClass("starred")) {
+                star.removeClass("starred");
+                star.addClass("unstarred");
+            } else if (star.hasClass("unstarred")) {
+                star.removeClass("unstarred");
+                star.addClass("starred");
+            } else {
+                star.addClass("starred");
+            }
+
+            // Отримання прихованої форми і виклик методу submit() для відправки POST-запиту
+            $("#hiddenForm").submit();
+        });
     });
 </script>
+
+
 
 </body>
 </html>

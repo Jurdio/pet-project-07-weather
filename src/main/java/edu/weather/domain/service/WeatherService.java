@@ -13,6 +13,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 public class WeatherService {
     private static final String apiKey = "6d0aadf4bc13feed027bc8c22d7a338d";
@@ -50,6 +51,8 @@ public class WeatherService {
         LocationDTO locationDTO = objectMapper.readValue(weatherData, LocationDTO.class);
 
         locationDTO.setName(JsonPath.parse(weatherData).read("$.city.name"));
+        locationDTO.setLatitude(BigDecimal.valueOf(city.getLatitude()));
+        locationDTO.setLongitude(BigDecimal.valueOf(city.getLongitude()));
 
         return locationDTO;
     }
