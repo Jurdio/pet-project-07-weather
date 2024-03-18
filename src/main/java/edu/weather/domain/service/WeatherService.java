@@ -51,6 +51,7 @@ public class WeatherService {
         LocationDTO locationDTO = objectMapper.readValue(weatherData, LocationDTO.class);
 
         locationDTO.setName(JsonPath.parse(weatherData).read("$.city.name"));
+        locationDTO.setId(JsonPath.parse(weatherData).read("$.city.id"));
         locationDTO.setLatitude(BigDecimal.valueOf(city.getLatitude()));
         locationDTO.setLongitude(BigDecimal.valueOf(city.getLongitude()));
 

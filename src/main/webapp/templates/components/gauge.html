@@ -79,15 +79,17 @@
             </span>
         </div>
     </div>
-                     <!-- action="/weather_war_exploded/weather" -->
-    <form id="hiddenForm" method="POST" style="display: none;">
+    <!-- action="/weather_war_exploded/weather" -->
+    <form th:id="${locationDTO.id}" method="POST" style="display: none;">
         <input type="hidden" name="name" th:value="${locationDTO.name}"/>
         <input type="hidden" name="latitude" th:value="${locationDTO.latitude}"/>
         <input type="hidden" name="longitude" th:value="${locationDTO.longitude}"/>
     </form>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     $(document).ready(function() {
         $(".star").click(function() {
@@ -103,7 +105,8 @@
             }
 
             // Отримання прихованої форми і виклик методу submit() для відправки POST-запиту
-            $("#hiddenForm").submit();
+            var formId = $(this).closest('.container').find('form').attr('id');
+            $("#" + formId).submit();
         });
     });
 </script>

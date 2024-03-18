@@ -54,6 +54,7 @@ public class WeatherController extends BaseController {
         webContext.setVariable("nameOfImg", "sunny-with-cloud.jpg");
         System.out.print(locationDTO.getName());
 
+
         templateEngine.process("home", webContext, response.getWriter());
     }
 

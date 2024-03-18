@@ -13,7 +13,7 @@
 <div th:each="locationDTO : ${locations}" style="margin-top: 10px">
     <div th:include="~{/content}"></div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
     $(document).ready(function () {
         // Функція для відображення першого елемента та його деталей
@@ -28,6 +28,10 @@
 
         // Викликаємо функцію при завантаженні сторінки
         showFirstElementDetails();
+
+        // Змінюємо колір іконок зірок
+        $(".star-icon").css("color", "#BADAFB");
+        $(".star-icon .star-icon").css("color", "#9d9d9d");
     });
 
     // Додаємо слухача подій для кожного дня після завантаження сторінки
@@ -51,9 +55,16 @@
             $(this).addClass("active");
         }
     });
-    $(".star-icon").css("color", "#BADAFB");
-    $(".star-icon .star-icon").css("color", "#9d9d9d");
+
+    // Додаємо функцію для відправки форми після кліку на зірочку
+    function submitForm(star) {
+        // Отримуємо батьківську форму
+        var form = $(star).closest('form');
+        // Відправляємо форму
+        form.submit();
+    }
 </script>
+
 
 </body>
 

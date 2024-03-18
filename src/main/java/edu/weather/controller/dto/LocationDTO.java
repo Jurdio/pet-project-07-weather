@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LocationDTO {
+    private Integer id;
     private String name;
     @JsonProperty("lat")
     private BigDecimal latitude;
