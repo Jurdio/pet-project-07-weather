@@ -24,7 +24,7 @@ import java.math.BigDecimal;
 import java.util.Locale;
 import java.util.UUID;
 
-@WebServlet(value = "/weather")
+@WebServlet(value = "/")
 public class WeatherController extends BaseController {
 
     private WeatherService weatherService;
@@ -67,6 +67,7 @@ public class WeatherController extends BaseController {
         Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
         System.out.println("POST");
         locationService.saveLocation(location, session.getUserId());
+        resp.sendRedirect("/");
     }
 
     @Override

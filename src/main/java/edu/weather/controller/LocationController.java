@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -42,5 +43,18 @@ public class LocationController extends BaseController {
         webContext.setVariable("locale", new Locale("en"));
         webContext.setVariable("nameOfImg", "sunny-with-cloud.jpg");
         templateEngine.process("mylocations", webContext, resp.getWriter());
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Location location = Location.builder()
+                .name(req.getParameter("name"))
+                .latitude(BigDecimal.valueOf(Double.parseDouble(req.getParameter("latitude"))))
+                .longitude(BigDecimal.valueOf(Double.parseDouble(req.getParameter("longitude"))))
+                .build();
+        Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
+        System.out.println("POST");
+        locationService.deleteLocation(location, session.getUserId());
+        resp.sendRedirect("/my-locations");
     }
 }

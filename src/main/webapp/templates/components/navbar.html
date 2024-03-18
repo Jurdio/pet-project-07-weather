@@ -13,13 +13,13 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" th:href="@{'/'}">
         <img th:src="@{/static/img/logo.jpg}" class="navbar-brand img-fluid" width="50px" height="50px" alt="Your Logo">
     </a>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" th:href="@{'/'}">Home</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{${loggedIn ? '/my-locations' : '/sign-in'}}">My locations</a>

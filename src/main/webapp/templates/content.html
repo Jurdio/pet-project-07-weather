@@ -293,9 +293,9 @@
                                     </div>
                                     <div class="sun-info">
                                         <span style="color: #9d9d9d">Sunrise : <span style="color: black"
-                                                                                    th:text="${#temporals.format(day.sunRise, 'HH:mm')}"></span></span>
+                                                                                     th:text="${#temporals.format(day.sunRise, 'HH:mm')}"></span></span>
                                         <span style="color: #9d9d9d">Sunset : <span style="color: black"
-                                                                                   th:text="${#temporals.format(day.sunSet, 'HH:mm')}"></span></span>
+                                                                                    th:text="${#temporals.format(day.sunSet, 'HH:mm')}"></span></span>
                                     </div>
                                 </div>
                             </div>
@@ -369,50 +369,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<!--<script>-->
-<!--    $(document).ready(function () {-->
-<!--        // Функція для відображення першого елемента та його деталей-->
-<!--        function showFirstElementDetails() {-->
-<!--            console.log("Showing first element details...");-->
-<!--            // Відображаємо блок опису першого елемента-->
-<!--            $(".day-details:first").show();-->
-
-<!--            // Додаємо клас 'active' для першого елемента-->
-<!--            $(".day-card:first").addClass("active");-->
-<!--        }-->
-
-<!--        // Викликаємо функцію при завантаженні сторінки-->
-<!--        showFirstElementDetails();-->
-
-<!--        // Додаємо слухача подій для кожного дня-->
-<!--        $(".day-card").click(function () {-->
-<!--            console.log("Day card clicked...");-->
-<!--            // Перевіряємо, чи обраний елемент вже має клас 'active'-->
-<!--            var isActive = $(this).hasClass("active");-->
-
-<!--            // Сховуємо всі блоки опису-->
-<!--            $(".day-details").hide();-->
-
-<!--            // Відображаємо блок опису обраного дня тільки, якщо він неактивний-->
-<!--            if (!isActive) {-->
-<!--                var index = $(".day-card").index(this);-->
-<!--                $(".day-details").eq(index).show();-->
-<!--            }-->
-
-<!--            // Змінюємо клас 'active' для обраного дня і видаляємо для інших-->
-<!--            $(".day-card").removeClass("active");-->
-<!--            if (!isActive) {-->
-<!--                $(this).addClass("active");-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-
-
-
-
-
-<!--</script>-->
-
 </body>
 
 </html>

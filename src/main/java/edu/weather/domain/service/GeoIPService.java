@@ -59,8 +59,8 @@ public class GeoIPService {
     private City getDefaultCity() {
         return City.builder()
                 .name("Lviv")
-                .latitude(51.4995)
-                .longitude(-0.196679)
+                .latitude(51.50)
+                .longitude(-0.20)
                 .build();
     }
     }

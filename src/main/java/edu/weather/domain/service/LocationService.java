@@ -21,4 +21,7 @@ public class LocationService {
     public List<Location> getAllUserLocation(int userId){
         return locationRepository.findAllByUserId(userId);
     }
+    public void deleteLocation(Location location, int userId){
+        locationRepository.deleteByUserId(location, userId);
+    }
 }

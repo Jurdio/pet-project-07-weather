@@ -85,13 +85,23 @@ public class LocationRepository implements CrudRepository<Location, Integer> {
 
     @Override
     public void delete(Integer id) {
+
+    }
+
+    public void deleteByUserId(Location location, Integer userId) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Location location = session.get(Location.class, id);
-            if (location != null) {
-                session.delete(location);
-            }
+
+            // Видаляємо записи за вказаними параметрами
+            Query query = session.createQuery("DELETE FROM Location WHERE name = :name AND latitude = :latitude AND longitude = :longitude AND userId = :userId");
+            query.setParameter("name", location.getName());
+            query.setParameter("latitude", location.getLatitude());
+            query.setParameter("longitude", location.getLongitude());
+            query.setParameter("userId", userId);
+
+            int result = query.executeUpdate();
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null && transaction.isActive()) {
@@ -101,4 +111,6 @@ public class LocationRepository implements CrudRepository<Location, Integer> {
             throw e;
         }
     }
+
+
 }
