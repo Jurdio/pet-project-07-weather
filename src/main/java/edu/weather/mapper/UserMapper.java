@@ -3,6 +3,7 @@ package edu.weather.mapper;
 import edu.weather.controller.dto.UserDTO;
 import edu.weather.domain.model.User;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -11,8 +12,7 @@ public interface UserMapper {
 
     UserDTO toUserDTO(User user);
 
-
-//    @Mapping(source = "password", target = "password", qualifiedByName = "hashPassword")
+    @Mapping(source = "password", target = "password", qualifiedByName = "hashPassword")
     User toUser(UserDTO userDTO);
 
     @Named("hashPassword")

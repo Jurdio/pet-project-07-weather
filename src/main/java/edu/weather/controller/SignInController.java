@@ -3,6 +3,9 @@ package edu.weather.controller;
 import edu.weather.controller.dto.UserDTO;
 import edu.weather.domain.model.Session;
 import edu.weather.domain.service.AuthorizationService;
+import edu.weather.domain.service.CookieService;
+import edu.weather.exception.AuthorizationException;
+import edu.weather.exception.RegistrationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
@@ -16,6 +19,7 @@ import java.io.IOException;
 @WebServlet(value = "/sign-in")
 public class SignInController extends BaseController {
     private final AuthorizationService authorizationService = new AuthorizationService();
+    private final CookieService cookieService = new CookieService();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info("Start GET method -> /sign-in");
@@ -33,22 +37,20 @@ public class SignInController extends BaseController {
                 .login(username)
                 .password(password)
                 .build();
-
-        Session session = authorizationService.getAuthorizationByLoginAndThenReturnSession(userDTO);
-        log.info("User {} is registered", userDTO.getLogin());
-        log.info("Session id is {}", session.getId());
-
-        Cookie cookie = new Cookie("sessionId",session.getId().toString());
-        Cookie cookie1 = new Cookie("username", userDTO.getLogin());
-        System.out.println(cookie);
-        System.out.println(cookie1);
-
-        resp.addCookie(cookie);
-        resp.addCookie(cookie1);
-        resp.sendRedirect(req.getContextPath() + "/home");
+        try {
+            String sessionId = authorizationService.authorizationAndReturnSessionOrElseThrow(userDTO).getId().toString();
+            log.info("User {} is registered", userDTO.getLogin());
+            log.info("Session id is {}", sessionId);
 
 
+            cookieService.setCookie(resp, "sessionId", sessionId);
+            cookieService.setCookie(resp, "username", userDTO.getLogin());
+
+            resp.sendRedirect(req.getContextPath() + "/");
+        } catch (AuthorizationException e) {
+            log.error("Помилка реєстрації: {}", e.getMessage(), e);
+            webContext.setVariable("error", e.getMessage());
+            templateEngine.process("signIn", webContext, resp.getWriter());
+        }
     }
-
-
 }

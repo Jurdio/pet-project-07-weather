@@ -1,7 +1,6 @@
 package edu.weather.controller;
 
 import edu.weather.controller.dto.LocationDTO;
-import edu.weather.domain.model.City;
 import edu.weather.domain.model.Location;
 import edu.weather.domain.model.Session;
 import edu.weather.domain.service.LocationService;
@@ -14,35 +13,27 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
-@WebServlet(value = "/my-locations")
-public class LocationController extends BaseController {
-    private SessionService sessionService = new SessionService();
-    private LocationService locationService = new LocationService();
+@WebServlet(value = "/search")
+public class SearchController extends BaseController{
     private WeatherService weatherService = new WeatherService();
+    SessionService sessionService = new SessionService();
+    LocationService locationService = new LocationService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
+        String cityName = req.getParameter("name");
+        LocationDTO locationDTO = weatherService.findLocationByName(cityName);
 
-        List<Location> locations = locationService.getAllUserLocation(session.getUserId());
-        List<LocationDTO> locationDTOList = new ArrayList<>();
-        for (Location location : locations){
-            LocationDTO locationDTO = weatherService.findLocationByCity(City.builder()
-                    .name(location.getName())
-                    .longitude(Double.parseDouble(String.valueOf(location.getLongitude())))
-                    .latitude(Double.parseDouble(String.valueOf(location.getLatitude())))
-                    .build());
-            locationDTOList.add(locationDTO);
-        }
-        webContext.setVariable("locations", locationDTOList);
+        webContext.setVariable("locationDTO", locationDTO);
         webContext.setVariable("locale", new Locale("en"));
-        webContext.setVariable("nameOfImg", "sunny-with-cloud.jpg");
-        templateEngine.process("mylocations", webContext, resp.getWriter());
+        System.out.print(locationDTO.getName());
+
+
+        templateEngine.process("search", webContext, resp.getWriter());
+
     }
 
     @Override
@@ -54,7 +45,7 @@ public class LocationController extends BaseController {
                 .build();
         Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
         System.out.println("POST");
-        locationService.deleteLocation(location, session.getUserId());
-        resp.sendRedirect(req.getContextPath() + "/my-locations");
+        locationService.saveLocation(location, session.getUserId());
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

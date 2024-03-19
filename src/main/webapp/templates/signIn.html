@@ -10,6 +10,10 @@
             margin-top: 20px; /* Визначте відступ, який вам потрібен */
             background: none;
         }
+        .error{
+            background-color: red;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -35,6 +39,9 @@
                     <div class="card-footer">
                         <h6 class="text-center">Don`t have an account? <a th:href="@{/sign-up}">Sign Up</a></h6>
                     </div>
+                </div>
+                <div class="error" th:if="${not #strings.isEmpty(error)}">
+                    <p th:text="${error}" style="color: black; margin-top: 10px"></p>
                 </div>
             </div>
         </div>

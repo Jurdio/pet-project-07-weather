@@ -16,7 +16,7 @@ public class UserService {
     public User createUser(UserDTO userDTO){
         return userRepository.save(userMapper.toUser(userDTO));
     }
-    public User getUserByLogin(String login){
+    public Optional<User> getUserByLogin(String login){
         return userRepository.findByLogin(login);
     }
     public Optional<User> getUserById(int id){

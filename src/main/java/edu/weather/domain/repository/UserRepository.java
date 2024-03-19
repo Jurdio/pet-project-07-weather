@@ -27,17 +27,18 @@ public class UserRepository implements CrudRepository<User, Integer> {
         return Optional.empty();
     }
 
-    public User findByLogin(String login) {
+    public Optional<User> findByLogin(String login) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             String hql = "FROM User WHERE login = :login";
             Query<User> query = session.createQuery(hql, User.class);
             query.setParameter("login", login);
 
-            return query.uniqueResult();
+            return Optional.ofNullable(query.uniqueResult());
         } catch (Exception e) {
             log.error("Error while finding user by login", e);
-            throw e;
+
         }
+        return Optional.empty();
     }
 
     @Override

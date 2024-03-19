@@ -19,8 +19,8 @@ public class CookieService {
                 .findFirst();
     }
 
-    public void setCookie(HttpServletResponse response, Session session) {
-        Cookie cookie = new Cookie("sessionId", session.getId().toString());
+    public void setCookie(HttpServletResponse response, String name, String value) {
+        Cookie cookie = new Cookie(name, value);
         response.addCookie(cookie);
     }
     public void clearCookie(HttpServletResponse response, Cookie cookie){

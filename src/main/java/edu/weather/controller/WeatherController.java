@@ -68,7 +68,7 @@ public class WeatherController extends BaseController {
         Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
         System.out.println("POST");
         locationService.saveLocation(location, session.getUserId());
-        resp.sendRedirect("/");
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 
     @Override

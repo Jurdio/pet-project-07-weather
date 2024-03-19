@@ -17,9 +17,9 @@ public class LocationDTO {
     private Integer id;
     private String name;
     @JsonProperty("lat")
-    private BigDecimal latitude;
+    private double latitude;
     @JsonProperty("lon")
-    private BigDecimal longitude;
+    private double longitude;
     @JsonProperty("list")
     private List<DayDTO> days;
 }

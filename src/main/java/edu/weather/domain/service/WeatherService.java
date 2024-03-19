@@ -24,7 +24,7 @@ public class WeatherService {
         this.httpClient = HttpClients.createDefault();
     }
 
-    public String getWeatherDataByName(String apiKey, String city) throws IOException {
+    public String getWeatherDataByName(String city) throws IOException {
         String apiUrl = "https://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&" + "cnt=7" + "&" + "units=metric" + "&" + "appid=" + apiKey;
 
         // Виконуємо HTTP-запит
@@ -44,7 +44,7 @@ public class WeatherService {
     }
 
     public LocationDTO findLocationByCity(City city) throws IOException {
-        String weatherData = getWeatherDataByName(apiKey, city.getName());
+        String weatherData = getWeatherDataByName(city.getName());
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
@@ -52,8 +52,22 @@ public class WeatherService {
 
         locationDTO.setName(JsonPath.parse(weatherData).read("$.city.name"));
         locationDTO.setId(JsonPath.parse(weatherData).read("$.city.id"));
-        locationDTO.setLatitude(BigDecimal.valueOf(city.getLatitude()));
-        locationDTO.setLongitude(BigDecimal.valueOf(city.getLongitude()));
+        locationDTO.setLatitude(city.getLatitude());
+        locationDTO.setLongitude((city.getLongitude()));
+
+        return locationDTO;
+    }
+    public LocationDTO findLocationByName(String name) throws IOException {
+        String weatherData = getWeatherDataByName(name);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        LocationDTO locationDTO = objectMapper.readValue(weatherData, LocationDTO.class);
+
+        locationDTO.setName(JsonPath.parse(weatherData).read("$.city.name"));
+        locationDTO.setId(JsonPath.parse(weatherData).read("$.city.id"));
+        locationDTO.setLatitude(JsonPath.parse(weatherData).read("$.city.coord.lat"));
+        locationDTO.setLongitude(JsonPath.parse(weatherData).read("$.city.coord.lon"));
 
         return locationDTO;
     }
