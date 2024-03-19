@@ -52,6 +52,7 @@ public class WeatherService {
 
         locationDTO.setName(JsonPath.parse(weatherData).read("$.city.name"));
         locationDTO.setId(JsonPath.parse(weatherData).read("$.city.id"));
+        locationDTO.setCountry(JsonPath.parse(weatherData).read("$.city.country"));
         locationDTO.setLatitude(city.getLatitude());
         locationDTO.setLongitude((city.getLongitude()));
 
@@ -68,6 +69,8 @@ public class WeatherService {
         locationDTO.setId(JsonPath.parse(weatherData).read("$.city.id"));
         locationDTO.setLatitude(JsonPath.parse(weatherData).read("$.city.coord.lat"));
         locationDTO.setLongitude(JsonPath.parse(weatherData).read("$.city.coord.lon"));
+        locationDTO.setCountry(JsonPath.parse(weatherData).read("$.city.country"));
+
 
         return locationDTO;
     }

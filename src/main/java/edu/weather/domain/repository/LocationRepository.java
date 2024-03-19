@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,43 @@ public class LocationRepository implements CrudRepository<Location, Integer> {
             throw e;
         }
     }
+    public Optional<Location> findByCoordinates(BigDecimal latitude, BigDecimal longitude, int userId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Заокруглення координат до двох знаків після коми
+            latitude = latitude.setScale(2, RoundingMode.HALF_UP);
+            longitude = longitude.setScale(2, RoundingMode.HALF_UP);
+
+            String hql = "FROM Location WHERE latitude = :latitude AND longitude = :longitude AND userId = :userId";
+            Query<Location> query = session.createQuery(hql, Location.class);
+            query.setParameter("latitude", latitude);
+            query.setParameter("longitude", longitude);
+            query.setParameter("userId", userId);
+            Location location = query.uniqueResult();
+            return Optional.ofNullable(location);
+        } catch (Exception e) {
+            log.error("Error while finding location by coordinates and userId", e);
+            throw e;
+        }
+    }
+
+    public Optional<Location> findByName(String name, int userId) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Використовуємо HQL для складання запиту
+            String hql = "FROM Location WHERE name = :name AND userId = :userId";
+            Query<Location> query = session.createQuery(hql, Location.class);
+            query.setParameter("name", name);
+            query.setParameter("userId", userId);
+            // Виконуємо запит і отримуємо результат
+            Location location = query.uniqueResult();
+            return Optional.ofNullable(location);
+        } catch (Exception e) {
+            // У випадку помилки виводимо повідомлення у лог
+            log.error("Error while finding location by name and userId", e);
+            throw e;
+        }
+    }
+
+
     public List<Location> findAllByUserId(int userId) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // Використовуємо HQL (Hibernate Query Language) для складання запиту
@@ -94,8 +133,7 @@ public class LocationRepository implements CrudRepository<Location, Integer> {
             transaction = session.beginTransaction();
 
             // Видаляємо записи за вказаними параметрами
-            Query query = session.createQuery("DELETE FROM Location WHERE name = :name AND latitude = :latitude AND longitude = :longitude AND userId = :userId");
-            query.setParameter("name", location.getName());
+            Query query = session.createQuery("DELETE FROM Location WHERE latitude = :latitude AND longitude = :longitude AND userId = :userId");
             query.setParameter("latitude", location.getLatitude());
             query.setParameter("longitude", location.getLongitude());
             query.setParameter("userId", userId);

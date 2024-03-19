@@ -70,29 +70,61 @@
 </head>
 <body>
 
+
 <div class="container">
     <div class="row align-items-center">
         <div class="col-md-4" style="padding-right: 0;">
-            <span style="color: #9d9d9d; font-size: 20px;">Weather <span style="font-weight: bold; color: black" th:text="'in ' + ${locationDTO.name}"></span></span>
+            <span style="color: #9d9d9d; font-size: 20px;">Weather <span style="font-weight: bold; color: black"
+                                                                         th:text="'in ' + ${locationDTO.name} + ', ' + ${locationDTO.country}"></span></span>
             <span class="star">
-                <span class="star-icon fa fa-star"></span>
+                <span th:if="${isAlreadyAdded}" class="star-icon fa fa-star starred" style="color: #BADAFB"></span>
+                <span th:unless="${isAlreadyAdded}" class="star-icon fa fa-star starred" style="color: #9d9d9d"></span>
             </span>
         </div>
     </div>
-    <!-- action="/weather_war_exploded/weather" -->
-    <form th:id="${locationDTO.id}" method="POST" style="display: none;">
+    <form th:id="${locationDTO.id}" th:if="${loggedIn}" method="POST">
         <input type="hidden" name="name" th:value="${locationDTO.name}"/>
         <input type="hidden" name="latitude" th:value="${locationDTO.latitude}"/>
         <input type="hidden" name="longitude" th:value="${locationDTO.longitude}"/>
     </form>
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            var loggedIn = [[${loggedIn}]];
+
+            $(".star").click(function () {
+                var star = $(this);
+                if (!loggedIn) {
+                    // Перенаправлення на сторінку /sign-in, якщо користувач не увійшов у систему
+                    window.location.href = "/weather_war_exploded/sign-in";
+                    return; // Зупинка подальшого виконання коду
+                }
+
+                if (star.hasClass("starred")) {
+                    star.removeClass("starred");
+                    star.addClass("unstarred");
+                } else if (star.hasClass("unstarred")) {
+                    star.removeClass("unstarred");
+                    star.addClass("starred");
+                } else {
+                    star.addClass("starred");
+                }
+
+                // Отримання прихованої форми і виклик методу submit() для відправки POST-запиту
+                var formId = $(this).closest('.container').find('form').attr('id');
+                $("#" + formId).submit();
+            });
+        });
+    </script>
+
+
 
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        $(".star").click(function() {
+    $(document).ready(function () {
+        $(".star").click(function () {
             var star = $(this);
             if (star.hasClass("starred")) {
                 star.removeClass("starred");
@@ -110,8 +142,6 @@
         });
     });
 </script>
-
-
 
 </body>
 </html>

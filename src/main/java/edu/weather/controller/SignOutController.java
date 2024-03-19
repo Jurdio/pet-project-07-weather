@@ -19,6 +19,6 @@ public class SignOutController extends BaseController {
                 .ifPresent(cookie -> {
                     cookieService.clearCookie(resp, cookie);
                 });
-        resp.sendRedirect(req.getContextPath() + "/home");
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

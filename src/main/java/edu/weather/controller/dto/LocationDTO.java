@@ -15,6 +15,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LocationDTO {
     private Integer id;
+    @JsonProperty("country")
+    private String country;
     private String name;
     @JsonProperty("lat")
     private double latitude;

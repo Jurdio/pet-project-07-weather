@@ -6,6 +6,7 @@ import edu.weather.domain.model.Session;
 import edu.weather.domain.service.LocationService;
 import edu.weather.domain.service.SessionService;
 import edu.weather.domain.service.WeatherService;
+import edu.weather.exception.LocationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,7 +27,8 @@ public class SearchController extends BaseController{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String cityName = req.getParameter("name");
         LocationDTO locationDTO = weatherService.findLocationByName(cityName);
-
+        Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
+        webContext.setVariable("isAlreadyAdded", locationService.isUserAlreadyAddedLocation(locationDTO, session.getUserId()));
         webContext.setVariable("locationDTO", locationDTO);
         webContext.setVariable("locale", new Locale("en"));
         System.out.print(locationDTO.getName());
@@ -43,9 +45,14 @@ public class SearchController extends BaseController{
                 .latitude(BigDecimal.valueOf(Double.parseDouble(req.getParameter("latitude"))))
                 .longitude(BigDecimal.valueOf(Double.parseDouble(req.getParameter("longitude"))))
                 .build();
-        Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
-        System.out.println("POST");
-        locationService.saveLocation(location, session.getUserId());
-        resp.sendRedirect(req.getContextPath() + "/");
+        try {
+            Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
+            System.out.println("POST");
+            locationService.saveLocation(location, session.getUserId());
+            resp.sendRedirect(req.getContextPath() + "/");
+        } catch (LocationException e){
+            webContext.setVariable("error", e.getMessage());
+            doGet(req,resp);
+        }
     }
 }

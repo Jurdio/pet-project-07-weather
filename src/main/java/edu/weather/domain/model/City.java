@@ -11,7 +11,6 @@ import lombok.*;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class City {
-    @NonNull
     @JsonProperty("city")
     private String name;
     private double latitude;

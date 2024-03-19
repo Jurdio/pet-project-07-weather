@@ -2,7 +2,6 @@ package edu.weather.domain.repository;
 
 
 import edu.weather.domain.model.Session;
-import edu.weather.exception.DataAccessException;
 import edu.weather.util.HibernateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Transaction;
@@ -21,7 +20,7 @@ public class SessionRepository implements CrudRepository<Session, UUID> {
             return Optional.ofNullable(session);
         } catch (Exception e) {
             log.error("Error while findById", e);
-            throw new DataAccessException("Error while retrieving session by ID");
+            throw e;
         }
     }
 

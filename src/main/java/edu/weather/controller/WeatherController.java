@@ -13,6 +13,7 @@ import edu.weather.domain.service.GeoIPService;
 import edu.weather.domain.service.LocationService;
 import edu.weather.domain.service.SessionService;
 import edu.weather.domain.service.WeatherService;
+import edu.weather.exception.LocationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -48,12 +49,14 @@ public class WeatherController extends BaseController {
         System.out.print(city.getName());
 
         LocationDTO locationDTO = weatherService.findLocationByCity(city);
+        if (webContext.getVariable("sessionId") != null){
+            Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
 
+            webContext.setVariable("isAlreadyAdded", locationService.isUserAlreadyAddedLocation(locationDTO, session.getUserId()));
+        }
         webContext.setVariable("locationDTO", locationDTO);
         webContext.setVariable("locale", new Locale("en"));
-        webContext.setVariable("nameOfImg", "sunny-with-cloud.jpg");
-        System.out.print(locationDTO.getName());
-
+        System.out.print(locationDTO.getCountry());
 
         templateEngine.process("home", webContext, response.getWriter());
     }
@@ -65,10 +68,16 @@ public class WeatherController extends BaseController {
                 .latitude(BigDecimal.valueOf(Double.parseDouble(req.getParameter("latitude"))))
                 .longitude(BigDecimal.valueOf(Double.parseDouble(req.getParameter("longitude"))))
                 .build();
+
         Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
-        System.out.println("POST");
-        locationService.saveLocation(location, session.getUserId());
-        resp.sendRedirect(req.getContextPath() + "/");
+
+        try {
+            locationService.saveLocation(location, session.getUserId());
+            resp.sendRedirect(req.getContextPath() + "/");
+        } catch (LocationException e){
+            webContext.setVariable("error", e.getMessage());
+            doGet(req,resp);
+        }
     }
 
     @Override

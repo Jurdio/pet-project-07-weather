@@ -41,7 +41,7 @@ public class LocationController extends BaseController {
         }
         webContext.setVariable("locations", locationDTOList);
         webContext.setVariable("locale", new Locale("en"));
-        webContext.setVariable("nameOfImg", "sunny-with-cloud.jpg");
+
         templateEngine.process("mylocations", webContext, resp.getWriter());
     }
 
@@ -53,7 +53,8 @@ public class LocationController extends BaseController {
                 .longitude(BigDecimal.valueOf(Double.parseDouble(req.getParameter("longitude"))))
                 .build();
         Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
-        System.out.println("POST");
+
+
         locationService.deleteLocation(location, session.getUserId());
         resp.sendRedirect(req.getContextPath() + "/my-locations");
     }
