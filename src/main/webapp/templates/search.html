@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <!-- Bootstrap CSS link (you may need to adjust the version) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div th:include="~{/components/navbar}"></div>
+
+<div th:include="~{/content}"></div>
+<script>
+    $(document).ready(function () {
+        // Функція для відображення першого елемента та його деталей
+        function showFirstElementDetails() {
+            console.log("Showing first element details...");
+            // Відображаємо блок опису першого елемента
+            $(".day-details:first").show();
+
+            // Додаємо клас 'active' для першого елемента
+            $(".day-card:first").addClass("active");
+        }
+
+        // Викликаємо функцію при завантаженні сторінки
+        showFirstElementDetails();
+    });
+
+    // Додаємо слухача подій для кожного дня після завантаження сторінки
+    $(document).on("click", ".day-card", function () {
+        console.log("Day card clicked...");
+        // Перевіряємо, чи обраний елемент вже має клас 'active'
+        var isActive = $(this).hasClass("active");
+
+        // Сховуємо всі блоки опису
+        $(".day-details").hide();
+
+        // Відображаємо блок опису обраного дня тільки, якщо він неактивний
+        if (!isActive) {
+            var index = $(".day-card").index(this);
+            $(".day-details").eq(index).show();
+        }
+
+        // Змінюємо клас 'active' для обраного дня і видаляємо для інших
+        $(".day-card").removeClass("active");
+        if (!isActive) {
+            $(this).addClass("active");
+        }
+    });
+</script>
+</body>
+</html>
