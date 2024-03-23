@@ -8,18 +8,25 @@
     <!-- Bootstrap CSS link (you may need to adjust the version) -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
-        .error{
+        .error {
             background-color: red;
             text-align: center;
         }
     </style>
 </head>
 <body>
-<div th:include="~{/components/navbar}"></div>
-<div class="error" th:if="${not #strings.isEmpty(error)}">
-    <p th:text="${error}" style="color: black; margin-top: 10px"></p>
+<div>
+    <div th:include="~{/components/navbar}"></div>
+    <div class="error" th:if="${not #strings.isEmpty(error)}">
+        <p th:text="${error}" style="color: black; margin-top: 10px"></p>
+    </div>
+    <div th:unless="${not #strings.isEmpty(error)}">
+        <div th:include="~{/content}"></div>
+    </div>
+
 </div>
-<div th:include="~{/content}"></div>
+
+
 <script>
     $(document).ready(function () {
         // Функція для відображення першого елемента та його деталей

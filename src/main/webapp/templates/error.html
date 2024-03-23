@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <!-- Bootstrap CSS link (you may need to adjust the version) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="error-container justify-content-center align-items-center d-flex flex-column vh-100">
+    <h1>Server Error</h1>
+    <p>An unexpected error occurred on the server. Please wait, it will be fixed shortly.</p>
+    <p>Try to <a class="home page link" th:href="@{'/'}">return to the home page</a></p>
+</div>
+</body>
+</html>

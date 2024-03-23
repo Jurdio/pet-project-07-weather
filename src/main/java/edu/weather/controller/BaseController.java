@@ -14,6 +14,7 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public abstract class BaseController extends HttpServlet {
@@ -44,10 +45,15 @@ public abstract class BaseController extends HttpServlet {
         System.out.println("Contoler"+sessionId);
        try {
            Session session = sessionService.getSessionById(UUID.fromString(sessionId));
-           System.out.println(session.getId().toString());
-           webContext.setVariable("sessionId",session.getId().toString());
-           webContext.setVariable("username",userService.getUserById(session.getUserId()).orElseThrow().getLogin());
-           webContext.setVariable("loggedIn", true);
+           if (session != null && session.getExpiredAt().isAfter(LocalDateTime.now())) {
+               System.out.println(session.getId().toString());
+               webContext.setVariable("sessionId",session.getId().toString());
+               webContext.setVariable("username",userService.getUserById(session.getUserId()).orElseThrow().getLogin());
+               webContext.setVariable("loggedIn", true);
+           } else {
+               webContext.setVariable("loggedIn", false);
+           }
+
        } catch (Exception e){
            System.out.println("Zalypa!!!!!!");
        }

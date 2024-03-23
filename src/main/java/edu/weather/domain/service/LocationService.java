@@ -16,7 +16,7 @@ public class LocationService {
     public void saveLocation(Location location, int userId) {
         locationRepository.findByCoordinates(location.getLatitude(), location.getLongitude(), userId)
                 .ifPresent(existingLocation -> {
-                    throw new LocationException("Location already exists");
+                    throw new LocationException("Location already added");
                 });
 
         locationRepository.save(Location.builder()

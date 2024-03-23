@@ -14,6 +14,7 @@ import edu.weather.domain.service.LocationService;
 import edu.weather.domain.service.SessionService;
 import edu.weather.domain.service.WeatherService;
 import edu.weather.exception.LocationException;
+import edu.weather.exception.weather.OpenWeatherResponseException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,20 +46,28 @@ public class WeatherController extends BaseController {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        City city = geoIPService.getCityByIp(request);
-        System.out.print(city.getName());
+        try {
+            City city = geoIPService.getCityByIp(request);
+            System.out.print(city.getName());
 
-        LocationDTO locationDTO = weatherService.findLocationByCity(city);
-        if (webContext.getVariable("sessionId") != null){
-            Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
+            LocationDTO locationDTO = weatherService.findLocationByCity(city);
+            if (webContext.getVariable("sessionId") != null){
+                Session session = sessionService.getSessionById(UUID.fromString(String.valueOf(webContext.getVariable("sessionId"))));
 
-            webContext.setVariable("isAlreadyAdded", locationService.isUserAlreadyAddedLocation(locationDTO, session.getUserId()));
+                webContext.setVariable("isAlreadyAdded", locationService.isUserAlreadyAddedLocation(locationDTO, session.getUserId()));
+            }
+            String exc = request.getParameter("error");
+            if (exc != null && !exc.isEmpty()){
+                webContext.setVariable("error", exc);
+            }
+            webContext.setVariable("locationDTO", locationDTO);
+            webContext.setVariable("locale", new Locale("en"));
+            System.out.print(locationDTO.getCountry());
+
+            templateEngine.process("home", webContext, response.getWriter());
+        } catch (Exception e){
+            templateEngine.process("error", webContext, response.getWriter());
         }
-        webContext.setVariable("locationDTO", locationDTO);
-        webContext.setVariable("locale", new Locale("en"));
-        System.out.print(locationDTO.getCountry());
-
-        templateEngine.process("home", webContext, response.getWriter());
     }
 
     @Override
