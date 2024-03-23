@@ -11,13 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8f38c4be-e553-47b6-8a33-84acdfeb6b3f" name="Changes" comment="feat: add correctly delete location and save">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/SearchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/controller/WeatherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/controller/WeatherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/LocationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/LocationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/WeatherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/weather/domain/service/WeatherService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/content.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/search.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feat/content" />
+        <entry key="$PROJECT_DIR$" value="fix/session-deleting" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,46 +60,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CheckDatabaseConnection.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GeoIPService.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Maven.weather [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.weather [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Smart Tomcat.Tomcat: weather.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.Tomcat 10.1.18.executor&quot;: &quot;Run&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fix/session-deleting&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CheckDatabaseConnection.executor": "Run",
+    "Application.GeoIPService.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Maven.weather [clean].executor": "Run",
+    "Maven.weather [install].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Smart Tomcat.Tomcat: weather.executor": "Run",
+    "Tomcat Server.Tomcat 10.1.18.executor": "Run",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;module&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "module"
     ],
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;,
-      &quot;java.sql.Driver&quot;
+    "DatabaseDriversLRU": [
+      "mariadb",
+      "java.sql.Driver"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Dmytro\IdeaProjects\weather\src\main\webapp\static\style" />
@@ -638,7 +631,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feat/add-autogeoserching" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
