@@ -9,8 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f38c4be-e553-47b6-8a33-84acdfeb6b3f" name="Changes" comment="feat: add correctly delete location and save">
+    <list default="true" id="8f38c4be-e553-47b6-8a33-84acdfeb6b3f" name="Changes" comment="fix: bug with session and add error handler">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/static/img/logo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/components/logo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/templates/components/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/templates/components/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="fix/session-deleting" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,6 +45,9 @@
     <option name="FILTER_INFO" value="true" />
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -60,46 +65,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CheckDatabaseConnection.executor": "Run",
-    "Application.GeoIPService.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Maven.weather [clean].executor": "Run",
-    "Maven.weather [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Smart Tomcat.Tomcat: weather.executor": "Run",
-    "Tomcat Server.Tomcat 10.1.18.executor": "Run",
-    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
-    "database.data.extractors.current.id": "Comma-separated (CSV)_id",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CheckDatabaseConnection.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GeoIPService.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Maven.weather [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.weather [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Smart Tomcat.Tomcat: weather.executor&quot;: &quot;Run&quot;,
+    &quot;Tomcat Server.Tomcat 10.1.18.executor&quot;: &quot;Run&quot;,
+    &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.poratu.idea.plugins.tomcat.setting.TomcatServersConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "module"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;module&quot;
     ],
-    "DatabaseDriversLRU": [
-      "mariadb",
-      "java.sql.Driver"
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;,
+      &quot;java.sql.Driver&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Dmytro\IdeaProjects\weather\src\main\webapp\static\style" />
@@ -245,6 +250,13 @@
       <workItem from="1711042802205" duration="306000" />
       <workItem from="1711141178511" duration="5652000" />
       <workItem from="1711184168239" duration="1356000" />
+      <workItem from="1711224431583" duration="510000" />
+      <workItem from="1711623874417" duration="1809000" />
+      <workItem from="1712479714843" duration="1523000" />
+      <workItem from="1712563573496" duration="26000" />
+      <workItem from="1712577910533" duration="61000" />
+      <workItem from="1712603740875" duration="709000" />
+      <workItem from="1713469234563" duration="675000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -614,7 +626,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710864750630</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="fix: bug with session and add error handler">
+      <option name="closed" value="true" />
+      <created>1711187242610</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1711187242610</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +651,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -644,7 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="chore: refactor method save() in UserRepository.java" />
     <MESSAGE value="feat: implement interface in SessionRepository.java" />
     <MESSAGE value="chore: add new dependency in pom.xml" />
     <MESSAGE value="chore: refactor User and UserMapper" />
@@ -669,7 +688,8 @@
     <MESSAGE value="feat: add delete location" />
     <MESSAGE value="fix: fix bug with delete location" />
     <MESSAGE value="feat: add correctly delete location and save" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add correctly delete location and save" />
+    <MESSAGE value="fix: bug with session and add error handler" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: bug with session and add error handler" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
